@@ -86,9 +86,9 @@ public class instance {
     public void setBricksCloneOf(Brick[] OldList) throws CloneNotSupportedException  {
         for(Brick brick: OldList){
             this.bricks[count] = brick.clone();
-            //count++;
+            count++;
             }
-            //count=0;
+            count=0;
     }
     public void setPowerUpCloneOf(ArrayList<PowerUp> OldList) throws CloneNotSupportedException  {
             for(PowerUp powerup: OldList){

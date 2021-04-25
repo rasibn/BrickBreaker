@@ -128,6 +128,7 @@ public class Board extends JPanel {
         instances[1].setisEmpty(false);
         instances[1].setBallsCloneOf(instances[0].getBalls());
         instances[1].setBricksCloneOf(instances[0].getbricks());
+        instances[1].setPowerUpCloneOf(instances[0].getPowerups());
 
         instances[1].setPlayerX(paddle.getX());
         instances[1].setPlayerY(paddle.getY());
@@ -261,22 +262,6 @@ public class Board extends JPanel {
         moveGameObjects();
         checkCollision();
         checkifOnlyUnbreakbleBricksLeft();      
-        //This is for testing powerups until the powerups are made.
-        /*
-        if(TestingCount>300) {
-            String[] testingPowerArray = {"fire", "long", "small", "slow", "fast", "default"};
-        	powerCount++;
-            String testPowerValue = testingPowerArray[testingPowerArray.length - powerCount];
-        	paddle.setPowerUp(testPowerValue);
-            if(powerCount == testingPowerArray.length) {
-                powerCount = 0;
-            }
-            paddle.setBallStuckToPaddle(true);
-        	TestingCount = 0;
-            
-        }
-        TestingCount++;
-        */
     }
     private void stopGame() {
         saved_message = "Game Over. Try Again. Choose NEW GAME or load a SAVED GAME";
@@ -495,7 +480,9 @@ private void checkCollisionPaddleBall() {
 
                     if(bricks[i].isDestroyed()) {
                         Random rand = new Random();
-                        powerups.add(powerUpFactory.getPowerUp(rand.nextInt(7), bricks[i].getX()+ bricks[i].getImageWidth()/2, bricks[i].getY()));
+                        if(rand.nextInt(3) == 1) {
+                            powerups.add(powerUpFactory.getPowerUp(rand.nextInt(7), bricks[i].getX()+ bricks[i].getImageWidth()/2, bricks[i].getY()));
+                        }
                     }
                 }
             }
@@ -519,7 +506,6 @@ private void checkCollisionPaddleBall() {
               }
 		  }
 	  }	
-
   }
 
     void unpauseGame() {
@@ -531,15 +517,14 @@ private void checkCollisionPaddleBall() {
     }
 
   private class TAdapter extends KeyAdapter {
+        @Override
+        public void keyReleased(KeyEvent e) {
 
-      @Override
-      public void keyReleased(KeyEvent e) {
-
-          paddle.keyReleased(e);
-      }
+            paddle.keyReleased(e);
+        }
       
       @Override
-      public void keyPressed(KeyEvent e) {
+        public void keyPressed(KeyEvent e) {
     	  //4
     	  int key = e.getKeyCode(); 
           paddle.keyPressed(e);
@@ -553,9 +538,9 @@ private void checkCollisionPaddleBall() {
                 else { 
                     menuWindow.setVisible(true); 
                     pauseGame();
-                } 
+                    } 
+                }
             }
         }
-      }
-  }
+    }
 }

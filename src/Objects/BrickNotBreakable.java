@@ -13,6 +13,4 @@ public class BrickNotBreakable extends Brick {
     SetPath("src/PNG/07-Breakout-Tiles.png");
     super.loadImage();
     }
-
-    
 }

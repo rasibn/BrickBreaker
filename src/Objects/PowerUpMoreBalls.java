@@ -3,7 +3,9 @@ package Objects;
 public class PowerUpMoreBalls extends PowerUp {
     PowerUpMoreBalls(){
         super();
-        PowerUpName = "";
+        PowerUpName = "moreball";
         path ="src/PNG/43-Breakout-Tiles.png";
+        loadImage();
+        getImageDimensions();
     }
 }

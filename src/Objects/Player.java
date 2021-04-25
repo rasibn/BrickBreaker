@@ -104,6 +104,9 @@ public class Player extends Sprite{
 			case "long":
 				powerUpLong();
 				break;
+			case "extralife":
+				setLife(getLife()+1);
+				break;
 			case "small":
 				powerUpSmall();
 				break;

@@ -10,6 +10,8 @@ import Objects.BrickFactory;
 import Objects.BrickNotBreakable;
 import Objects.Missile;
 import Objects.Player;
+import Objects.PowerUp;
+import Objects.PowerUpFactory;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,17 +38,16 @@ public class Board extends JPanel {
 	private Timer timer;
     String saved_message = "Hi. Click NEW GAME or load a SAVED GAME.";
     private ArrayList<Ball> balls;
+    private ArrayList<PowerUp> powerups;
     private Player paddle;
     private boolean paused = false;
     private Brick[] bricks;
     boolean inGame = false;
     private JWindow menuWindow;
     instance[] instances;
-    //Remove these two when testing is done
-	private int TestingCount=0;
     private int VictoryCount = 1000; //high enough so it doesn't print the victory message at the start
-	private int powerCount =0;
     BrickFactory factory = new BrickFactory();
+    PowerUpFactory powerUpFactory =  new PowerUpFactory();
     public Board() {
 
         initBoard();
@@ -63,7 +64,6 @@ public class Board extends JPanel {
 
     private void gameInit() {
         paddle = Player.getPaddleInstance();
-
         instances = new instance[2];
 
         for(int i = 0; i < instances.length; i++) {
@@ -83,20 +83,10 @@ public class Board extends JPanel {
 
         balls = instances[0].getBalls();
         bricks = instances[0].getbricks();
-
+        powerups = instances[0].getPowerups();
 
         balls.add(new Ball());
-        /*for(int i = 0; i < 20 ; i++) {
-            try {
-                Ball ball = balls.get(0).clone();
-                ball.ballLaunchRandom();
-                balls.add(ball);
-                
-             } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
-             }
-        }
-        */
+
         maketheBricks();
         System.out.println("Current Life: " +paddle.getLife());
 
@@ -115,11 +105,14 @@ public class Board extends JPanel {
     }
     void getsavedInstance() throws CloneNotSupportedException {
         instances[0] = new instance();
+
         instances[0].setBallsCloneOf(instances[1].getBalls());
         instances[0].setBricksCloneOf(instances[1].getbricks());
+        instances[0].setPowerUpCloneOf(instances[1].getPowerups());
 
         balls = instances[0].getBalls();
         bricks = instances[0].getbricks();
+        powerups = instances[0].getPowerups();
 
         paddle.setX(instances[1].getPlayerX());
         paddle.setY(instances[1].getPlayerY());
@@ -156,6 +149,7 @@ public class Board extends JPanel {
             }
         }
     }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -167,10 +161,12 @@ public class Board extends JPanel {
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         if (inGame) {
             drawObjects(g2d);
+
             drawStringTopRight(g2d, "Life: " +paddle.getLife(), 56);
             drawStringTopRight(g2d, "Level: " +paddle.getLevel(), 18);
             drawStringTopRight(g2d, "Score: " +paddle.getScore(), 36);
         }
+
         if(paused) {
             DrawSavedMessage(g2d);
         }
@@ -198,12 +194,18 @@ public class Board extends JPanel {
             Ball ball = balls.get(i);    
             g2d.drawImage(ball.getImage(), ball.getX(), ball.getY(), ball.getImageWidth(), ball.getImageHeight(), this);
         }
+        for (int i = 0; i < powerups.size(); i++) {
+            PowerUp powerUp = powerups.get(i);    
+            g2d.drawImage(powerUp.getImage(), powerUp.getX(), powerUp.getY(), powerUp.getImageWidth(), powerUp.getImageHeight(), this);
+        }
+
         for (int i = 0; i < Commons.N_OF_BRICKS; i++) {
             if (!bricks[i].isDestroyed()) {
                 g2d.drawImage(bricks[i].getImage(), bricks[i].getX(), bricks[i].getY(), bricks[i].getImageWidth(), bricks[i].getImageHeight(), this);
             }
 
         }
+
         for (int i = 0; i < paddle.getMissiles().size(); i++) {
         	 Missile missile = paddle.getMissiles().get(i);
 
@@ -237,12 +239,19 @@ public class Board extends JPanel {
     public void moveGameObjects(){
         paddle.loadImage();
         paddle.move();
+
         for(int i=0;i<bricks.length;i++){
-            bricks[i].move();
+            if(!bricks[i].isDestroyed()) {
+                bricks[i].move();
+            }
         }
         for(int i=0;i<balls.size();i++){
             balls.get(i).move();
         }
+        for(int i=0;i<powerups.size();i++){
+            powerups.get(i).move();
+        }
+
         for(int i = 0; i < paddle.getMissiles().size(); i++) {
        	 	Missile missile = paddle.getMissiles().get(i);
        	 	missile.move();	
@@ -280,9 +289,46 @@ public class Board extends JPanel {
 	  	checkCollisionMissileBricks();
         checkCollisionPaddleBall();
         checkCollisionBallBricks();
+        checkCollisionPowerupPaddle();
         checkCollisionBrickMovement();
     }
   
+    private void checkCollisionPowerupPaddle() {  
+        for (int j = 0; j < powerups.size(); j++) {
+            PowerUp powerup = powerups.get(j);
+            if(powerup.getRect().intersects(paddle.getRect())) {
+                if(powerup.getType().equalsIgnoreCase("moreball")){
+                    for(int i = 0; i < 2 ; i++) {
+                        try {
+                            Ball ball = balls.get(0).clone();
+                            ball.ballLaunchRandom();
+                            balls.add(ball);
+                            
+                         } catch (CloneNotSupportedException e) {
+                            e.printStackTrace();
+                         }
+                    }
+                } 
+                else if (powerup.getType().equalsIgnoreCase("redball")){
+                    for(int i = 0; i < balls.size() ; i++) {
+                        balls.get(i).ChangeToRedBall();
+                    }
+                    for(int i =0; i < bricks.length;i++) {
+                        bricks[i].setBreakable();
+                    }
+                }
+                else {
+                    paddle.setPowerUp(powerup.getType());
+                }
+                paddle.setBallStuckToPaddle(true);
+                powerups.remove(j);
+            }
+            if(powerup.isOutOfBounds()) {
+                powerups.remove(j);
+            }
+        }
+}
+
     private void checkCollisionBrickMovement(){
         for(int i=0;i<bricks.length;i++){
             for(int j=0;j<bricks.length;j++){
@@ -431,7 +477,6 @@ private void checkCollisionPaddleBall() {
                 var pointLeft = new Point(ballLeft - 1, ballTop);
                 var pointTop = new Point(ballLeft, ballTop - 1);
                 var pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
-
                 if (!bricks[i].isDestroyed()) {
                     if (bricks[i].getRect().contains(pointRight)) {
                         ball.setXDir(-1*Math.abs(ball.getXDir()));
@@ -447,12 +492,16 @@ private void checkCollisionPaddleBall() {
                     }
                     bricks[i].DecreaseHP();
                     bricks[i].updateImage();
+
+                    if(bricks[i].isDestroyed()) {
+                        Random rand = new Random();
+                        powerups.add(powerUpFactory.getPowerUp(rand.nextInt(7), bricks[i].getX()+ bricks[i].getImageWidth()/2, bricks[i].getY()));
+                    }
                 }
             }
             }
         }
   	}
-
   private void checkCollisionMissileBricks() {
 	  for(int i = 0; i < paddle.getMissiles().size();i++) {
 		  for (int b = 0; b < Commons.N_OF_BRICKS; b++) {
@@ -461,6 +510,11 @@ private void checkCollisionPaddleBall() {
 	                  bricks[b].DecreaseHP();
                       bricks[b].updateImage();
 	                  paddle.getMissiles().get(i).setDestroyed(true);
+
+                      if(bricks[b].isDestroyed()) {
+                        Random rand = new Random();
+                        powerups.add(powerUpFactory.getPowerUp(rand.nextInt(7), bricks[i].getX()+ bricks[b].getImageWidth(), bricks[b].getY()));
+                    }
 		          }
               }
 		  }

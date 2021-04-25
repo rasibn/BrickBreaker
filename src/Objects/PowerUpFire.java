@@ -3,7 +3,9 @@ package Objects;
 public class PowerUpFire extends PowerUp {
     PowerUpFire(){
         super();
-        PowerUpName = "";
+        PowerUpName = "fire";
         path ="src/PNG/48-Breakout-Tiles.png";
+        loadImage();
+        getImageDimensions();
     }
 }

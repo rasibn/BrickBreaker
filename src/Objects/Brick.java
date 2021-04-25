@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 public abstract class Brick extends Sprite implements Cloneable{
 
     private boolean destroyed;
-    private boolean PowerUp;
     protected int HP;
     protected int score;
     protected String path;
@@ -29,16 +28,6 @@ public abstract class Brick extends Sprite implements Cloneable{
             setCanMove(true);
         else
             setCanMove(false);
-        
-        if(rand.nextInt(3) == 1)
-            setPowerUp(true);
-        else
-            setPowerUp(false);
-        
-    }
-
-    private void setPowerUp(boolean PowerUp) {
-        this.PowerUp =PowerUp;
     }
 
     public void loadImage() {
@@ -58,15 +47,16 @@ public abstract class Brick extends Sprite implements Cloneable{
     public boolean isDestroyed() {
         return destroyed;
     }
-
     public void setDestroyed(boolean val) {
         destroyed = val;
         Player.getPaddleInstance().setScore(Player.getPaddleInstance().getScore()+this.score);
     }
 
     public void DecreaseHP(){
-      HP = HP-1;
-      if(HP==0){
+        if(HP>0) {
+            HP = HP-1;
+        }
+        if(HP==0){
           setDestroyed(true);
         }
     }
@@ -88,7 +78,6 @@ public abstract class Brick extends Sprite implements Cloneable{
         else {
             System.out.println("There is an error in brick Class Change Direction");
         }
-      
     }
     @Override
     public Brick clone() throws CloneNotSupportedException {

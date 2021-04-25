@@ -75,13 +75,14 @@ public abstract class Sprite {
 
         return y;
     }
+    /*
     public void setVisible(boolean var){
         this.visible = var;
     }
     public boolean isVisible() {
         return visible;
     }
-
+*/
     public void setImageScaling(double ImageScale){
         this.ImageScale = ImageScale;
     }

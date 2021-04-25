@@ -278,14 +278,19 @@ public class Board extends JPanel {
         checkCollisionBrickMovement();
     }
   
-    private void checkCollisionPowerupPaddle() {  
+    private void checkCollisionPowerupPaddle() { 
         for (int j = 0; j < powerups.size(); j++) {
             PowerUp powerup = powerups.get(j);
             if(powerup.getRect().intersects(paddle.getRect())) {
                 if(powerup.getType().equalsIgnoreCase("moreball")){
-                    for(int i = 0; i < 2 ; i++) {
+                    int ballsize = balls.size(); 
+                    for(int i=0; i< ballsize; i++) {
                         try {
                             Ball ball = balls.get(0).clone();
+                            ball.ballLaunchRandom();
+                            balls.add(ball);
+
+                            ball = balls.get(0).clone();
                             ball.ballLaunchRandom();
                             balls.add(ball);
                             
@@ -481,7 +486,7 @@ private void checkCollisionPaddleBall() {
                     if(bricks[i].isDestroyed()) {
                         Random rand = new Random();
                         if(rand.nextInt(3) == 1) {
-                            powerups.add(powerUpFactory.getPowerUp(rand.nextInt(7), bricks[i].getX()+ bricks[i].getImageWidth()/2, bricks[i].getY()));
+                            powerups.add(powerUpFactory.getPowerUp(rand.nextInt(8), bricks[i].getX()+ bricks[i].getImageWidth()/2, bricks[i].getY()));
                         }
                     }
                 }

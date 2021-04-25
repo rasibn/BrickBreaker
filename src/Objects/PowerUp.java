@@ -12,7 +12,7 @@ public abstract class PowerUp extends Sprite implements Cloneable{
     }
     private void initPowerUp() {
         setYDir(3);
-        setImageScaling(2);
+        setImageScaling(2.1  );
     }
     
     @Override

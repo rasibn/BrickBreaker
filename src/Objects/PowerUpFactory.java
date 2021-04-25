@@ -30,6 +30,8 @@ public class PowerUpFactory {
 			case 7:
 				power =new PowerUpFire();
 				break;
+			case 8:
+				power = new PowerUpDefault();
 			default:
 				System.out.println("Invalid Power Up.");
 		}

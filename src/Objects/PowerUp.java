@@ -3,8 +3,9 @@ import Main.Commons;
 import javax.swing.ImageIcon;
 
 public abstract class PowerUp extends Sprite {
-    private String path;
 
+    protected String path;
+    protected String PowerUpName;
 	private boolean OutOfBounds;
     public PowerUp() {
         initPowerUp();

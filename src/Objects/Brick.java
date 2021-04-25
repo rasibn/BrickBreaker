@@ -1,9 +1,12 @@
 package Objects;
+import java.util.Random;
+
 import javax.swing.ImageIcon;
 
 public abstract class Brick extends Sprite implements Cloneable{
 
     private boolean destroyed;
+    private boolean PowerUp;
     protected int HP;
     protected int score;
     protected String path;
@@ -19,11 +22,23 @@ public abstract class Brick extends Sprite implements Cloneable{
         setXDir(2);
         destroyed = false; 
         CanMove = true;
-        //Remove this later because this should handled by the game  builder
-        if((int)(Math.random()*10)<2)
+
+        Random rand = new Random();
+
+        if(rand.nextInt(5) == 1)
             setCanMove(true);
         else
             setCanMove(false);
+        
+        if(rand.nextInt(3) == 1)
+            setPowerUp(true);
+        else
+            setPowerUp(false);
+        
+    }
+
+    private void setPowerUp(boolean PowerUp) {
+        this.PowerUp =PowerUp;
     }
 
     public void loadImage() {
@@ -41,7 +56,6 @@ public abstract class Brick extends Sprite implements Cloneable{
     }
 
     public boolean isDestroyed() {
-
         return destroyed;
     }
 

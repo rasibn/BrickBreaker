@@ -159,7 +159,7 @@ public class Board extends JPanel {
         //Make the Bricks
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 6; j++) {
-                int rand = ((int)(Math.random()*1 )) + 1;
+                int rand = ((int)(Math.random()*7 )) + 1;
                 bricks[k] = factory.getBrick(j * 145 + 120, i *50 + 50, rand);
                 k++;
             }

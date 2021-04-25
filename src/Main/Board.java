@@ -37,19 +37,18 @@ public class Board extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Timer timer;
-    private String saved_message = "Hi. Click NEW GAME or load a SAVED GAME.";
+    String saved_message = "Hi. Click NEW GAME or load a SAVED GAME.";
     private ArrayList<Ball> balls;
     private Player paddle;
     private boolean paused = false;
     private Brick[] bricks;
-    private boolean inGame = false;
-    private JWindow menuWindow = new JWindow();
-    private instance[] instances;
+    boolean inGame = false;
+    private JWindow menuWindow;
+    instance[] instances;
     //Remove these two when testing is done
 	private int TestingCount=0;
 	private int powerCount =0;
     BrickFactory factory = new BrickFactory();
-    private boolean messageVisble =true;
     public Board() {
 
         initBoard();
@@ -73,8 +72,8 @@ public class Board extends JPanel {
             instances[i] = new instance();
             }
         makeNewInstance();
-
-        makingTheMenu();
+        Menu menu = Menu.getMenu();
+        menuWindow = menu.makingTheMenu(this);
         pauseGame();
         timer = new Timer(Commons.PERIOD, new GameCycle());
         timer.start();
@@ -113,7 +112,7 @@ public class Board extends JPanel {
         paddle.setY(instances[0].getPlayerY());
      }
     
-    private void makeNewInstance() {
+    void makeNewInstance() {
         makeGameInstance();
         paddle.initState();
 
@@ -122,7 +121,7 @@ public class Board extends JPanel {
         makeGameInstance();
         paddle.setBallStuckToPaddle(true);
     }
-    private void getsavedInstance() throws CloneNotSupportedException {
+    void getsavedInstance() throws CloneNotSupportedException {
         instances[0] = new instance();
         instances[0].setBallsCloneOf(instances[1].getBalls());
         instances[0].setBricksCloneOf(instances[1].getbricks());
@@ -139,7 +138,7 @@ public class Board extends JPanel {
         paddle.setBallStuckToPaddle(instances[1].isBallStuckToPaddle());
 
     }
-    private void saveTheGame() throws CloneNotSupportedException{
+    void saveTheGame() throws CloneNotSupportedException{
         instances[1] = new instance();
         instances[1].setisEmpty(false);
         instances[1].setBallsCloneOf(instances[0].getBalls());
@@ -180,7 +179,9 @@ public class Board extends JPanel {
             drawLevel(g2d);
             drawLife(g2d);
         }
-        DrawSavedMessage(g2d);
+        if(paused) {
+            DrawSavedMessage(g2d);
+        }
         Toolkit.getDefaultToolkit().sync();
     }
 
@@ -247,9 +248,7 @@ public class Board extends JPanel {
         FontMetrics fontMetrics = this.getFontMetrics(font);
         g2d.setColor(Color.BLACK);
         g2d.setFont(font);
-        if(messageVisble){
-            g2d.drawString(saved_message,(Commons.WIDTH - fontMetrics.stringWidth(saved_message)) / 2, 20);
-        }
+        g2d.drawString(saved_message,(Commons.WIDTH - fontMetrics.stringWidth(saved_message)) / 2, 20);
     }
 
     private class GameCycle implements ActionListener {
@@ -259,7 +258,6 @@ public class Board extends JPanel {
             if(!paused) {
                 doGameCycle();
             }
-            menuWindow.setLocationRelativeTo(Application.board);
             repaint();
         }
     }
@@ -495,15 +493,12 @@ private void checkCollisionPaddleBall() {
 
   }
 
-    private void unpauseGame() {
+    void unpauseGame() {
         paused = false;
-        messageVisble = false;
     }
 
     private void pauseGame() {
         paused = true;
-        messageVisble = true;
-
     }
 
   private class TAdapter extends KeyAdapter {
@@ -531,110 +526,5 @@ private void checkCollisionPaddleBall() {
               }
         }
       }
-
   }
-
-public void makingTheMenu(){
-    JLabel nameLabel = new JLabel("MENU");
-    nameLabel.setFont(new Font("Ariel", Font.BOLD, 30));
-    
-    JPanel topPanel = new JPanel();
-    JPanel middlePanel = new JPanel();
-    JPanel bottomPanel = new JPanel();
-    
-    topPanel.add(nameLabel);
-    
-    //ingame buttons
-    JButton resumeButton = new JButton("RESUME [ECS]");
-    resumeButton.setFont(new Font("RESUME [ECS]", Font.BOLD, 14));
-    JButton saveButton = new JButton("SAVE GAME");
-    saveButton.setFont(new Font("Ariel", Font.BOLD, 14));
-    JButton loadSaveButton = new JButton("LOAD SAVE");
-    loadSaveButton.setFont(new Font("Ariel", Font.BOLD, 14));
-    JButton newgameButton = new JButton("NEW GAME");
-    newgameButton.setFont(new Font("Ariel", Font.BOLD, 14));
-    JButton exitButton = new JButton("EXIT");
-    exitButton.setFont(new Font("Ariel", Font.BOLD, 14));
-
-    middlePanel.add(BorderLayout.CENTER, resumeButton);
-    middlePanel.add(BorderLayout.CENTER, loadSaveButton);
-    middlePanel.add(BorderLayout.CENTER, saveButton);
-
-    middlePanel.add(BorderLayout.CENTER, newgameButton);
-    middlePanel.add(BorderLayout.CENTER, exitButton);
-
-    resumeButton.setVisible(false);
-    saveButton.setVisible(false);
-
-    menuWindow.add(BorderLayout.NORTH, topPanel);
-    menuWindow.add(BorderLayout.CENTER, middlePanel);
-    menuWindow.add(BorderLayout.SOUTH, bottomPanel); 
-
-
-    newgameButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if(!inGame) {
-                resumeButton.setVisible(true);
-                saveButton.setVisible(true);
-                inGame = true;
-            }
-            saved_message = "Press NEW GAME to start over, or LOAD SAVE to load a saved game";
-            menuWindow.dispose();
-            makeNewInstance();
-            unpauseGame();
-        }
-    });
-    resumeButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            unpauseGame();
-            saved_message = "Press NEW GAME to start over, or LOAD SAVE to load a saved game";
-            menuWindow.dispose();
-        }
-    });
-    loadSaveButton.addActionListener(new ActionListener() {
-       
-        public void actionPerformed(ActionEvent e) {
-            if(!instances[1].isEmpty()) {
-                try {
-                    getsavedInstance();
-                } catch (CloneNotSupportedException e1) {
-                    e1.printStackTrace();
-                }
-                unpauseGame();
-                saved_message = "Press NEW GAME to start over, or LOAD SAVE to load a saved game";
-                menuWindow.dispose();
-            }
-            else {
-                saved_message ="You have no Saved Data! Try NEW GAME.";
-            }
-        }
-    });
-    exitButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.exit(0);
-
-        }
-    });
-    saveButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            try {
-                saveTheGame();
-                saved_message = "Game File Saved successfully. Press RESUME to continue, or LOAD SAVE to open the saved File.";
-            } catch (CloneNotSupportedException e1) {
-                e1.printStackTrace();
-            }
-        }
-    });
-    //These are the settings for the frame to have
-    menuWindow.setPreferredSize(new Dimension(400, 350));
-    menuWindow.pack();
-    menuWindow.setAlwaysOnTop(true);
-    menuWindow.setLocationRelativeTo(null);
-    menuWindow.setVisible(true);
-    menuWindow.repaint();
-    }
 }

@@ -3,7 +3,6 @@ package Objects;
 import javax.swing.ImageIcon;
 public class Missile extends Sprite {
 
-    private int ydir;
 	private boolean OutOfBounds;
     private boolean destroyed;
     public Missile() {
@@ -11,7 +10,7 @@ public class Missile extends Sprite {
         initMissile();
     }
     private void initMissile() {
-        ydir = -5;
+        setYDir(-5);
 
         loadImage();
         getImageDimensions();
@@ -24,21 +23,11 @@ public class Missile extends Sprite {
     }
 
     public void move() {
-        setY(getY() + ydir);
+        setY(getY() + getYDir());
 
         if (getY() <= 0) {
            OutOfBounds = true;
         }
-    }
-    
-    public void setYDir(int y) {
-
-        ydir = y;
-    }
-
-    public int getYDir() {
-
-        return ydir;
     }
     public void setDestroyed(boolean val) {
 

@@ -32,8 +32,11 @@ public class instance {
       return playerX;
   }
   public void setPlayerY(int y) {
+      playerY = y;
   }
-  public void setPlayerX(int x) {
+  public void setPlayerX(int x) { 
+    playerX = x;
+
   }
   public void setBallStuckToPaddle(boolean BallStuckToPaddle) {
       this.BallStuckToPaddle = BallStuckToPaddle;

@@ -47,6 +47,7 @@ public class Board extends JPanel {
     instance[] instances;
     //Remove these two when testing is done
 	private int TestingCount=0;
+    private int VictoryCount = 10000;
 	private int powerCount =0;
     BrickFactory factory = new BrickFactory();
     public Board() {
@@ -158,7 +159,7 @@ public class Board extends JPanel {
         //Make the Bricks
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 6; j++) {
-                int rand = ((int)(Math.random()*7)) + 1;
+                int rand = ((int)(Math.random()*1 )) + 1;
                 bricks[k] = factory.getBrick(j * 145 + 120, i *50 + 50, rand);
                 k++;
             }
@@ -175,47 +176,28 @@ public class Board extends JPanel {
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         if (inGame) {
             drawObjects(g2d);
-            drawScore(g2d);
-            drawLevel(g2d);
-            drawLife(g2d);
+            drawStringTopRight(g2d, "Life: " +paddle.getLife(), 56);
+            drawStringTopRight(g2d, "Level: " +paddle.getLevel(), 18);
+            drawStringTopRight(g2d, "Score: " +paddle.getScore(), 36);
         }
         if(paused) {
             DrawSavedMessage(g2d);
         }
-        Toolkit.getDefaultToolkit().sync();
-    }
-
-
-   private void drawLife(Graphics2D g2d) {
-    String message = "Life: ";
-    message+= paddle.getLife();
-    var font = new Font("Verdana", Font.BOLD, 15);
-    FontMetrics fontMetrics = this.getFontMetrics(font);
-    g2d.setColor(Color.RED);
-    g2d.setFont(font);
-    g2d.drawString(message, Commons.WIDTH - fontMetrics.stringWidth(message) - 2, 56);
-    }
-
- private void drawLevel(Graphics2D g2d) {
-        String message = "Level: ";
-        message+= paddle.getLevel();
-        var font = new Font("Verdana", Font.BOLD, 15);
-        FontMetrics fontMetrics = this.getFontMetrics(font);
-        g2d.setColor(Color.RED);
-        g2d.setFont(font);
-        g2d.drawString(message, Commons.WIDTH - fontMetrics.stringWidth(message) - 2, 18);
-
+        else if (!paused && VictoryCount <100){
+            VictoryCount++;
+            DrawSavedMessage(g2d); 
         }
 
-    private void drawScore(Graphics2D g2d) {
-        String message = "Score: "; 
-        message+= paddle.getScore();
+        Toolkit.getDefaultToolkit().sync();
+    } 
+
+
+   private void drawStringTopRight(Graphics2D g2d, String message, int height) {
         var font = new Font("Verdana", Font.BOLD, 15);
         FontMetrics fontMetrics = this.getFontMetrics(font);
         g2d.setColor(Color.RED);
         g2d.setFont(font);
-        g2d.drawString(message,Commons.WIDTH - fontMetrics.stringWidth(message) - 2, 36);
-
+        g2d.drawString(message, Commons.WIDTH - fontMetrics.stringWidth(message) - 2, height);
     }
 
     private void drawObjects(Graphics2D g2d) {
@@ -297,7 +279,7 @@ public class Board extends JPanel {
         */
     }
     private void stopGame() {
-        saved_message = "Game Over. Choose NEW GAME or load a SAVED GAME";
+        saved_message = "Game Over. Try Again. Choose NEW GAME or load a SAVED GAME";
         inGame = false;
         menuWindow.setVisible(true);
     }
@@ -402,7 +384,7 @@ private void checkCollisionPaddleBall() {
                 ball.ballLaunchRandom();
             }
             System.out.println("Current Life: " + paddle.getLife());
-            
+             
             if(paddle.getLife()<1) {
                 stopGame();
             }
@@ -435,12 +417,14 @@ private void checkCollisionPaddleBall() {
             for(int k=0;k<Commons.N_OF_BRICKS; k++)
               bricks[k].setBreakable();
         }
-        if (NoBricksLeft) {
+        if (NoBricksLeft) { 
             paddle.setLevel(paddle.getLevel()+1);
-            saved_message = "Victory! Get Ready for Level " + (paddle.getLevel());
+            saved_message = "Victory! Time for Level " + (paddle.getLevel()) + "!";
             makeNextLevel();
+            VictoryCount=0;
         }
   }
+
   private void checkCollisionBallBricks() {
   	   for (int i = 0; i < Commons.N_OF_BRICKS; i++) {
         for(int j = 0; j< balls.size();j++) {
@@ -515,15 +499,16 @@ private void checkCollisionPaddleBall() {
     	  int key = e.getKeyCode(); 
           paddle.keyPressed(e);
 
-          if (key == KeyEvent.VK_ESCAPE) { 
-              if(!menuWindow.isVisible()){
-                menuWindow.setVisible(true);
-                pauseGame();
+          if (key == KeyEvent.VK_ESCAPE) {
+              if(paused) {
+                 saved_message = "Press NEW GAME to start over, or LOAD SAVE to load a saved game";
+                 menuWindow.setVisible(false);
+                 unpauseGame();
               }
-              else {
-                menuWindow.setVisible(false);
-                unpauseGame();
-              }
+              else { 
+                  menuWindow.setVisible(true); 
+                  pauseGame();
+              } 
         }
       }
   }

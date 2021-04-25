@@ -69,7 +69,6 @@ public class Menu {
                     saveButton.setVisible(true);
                     board.inGame = true;
                 }
-                board.saved_message = "Press NEW GAME to start over, or LOAD SAVE to load a saved game";
                 menuWindow.dispose();
                 board.makeNewInstance();
                 board.unpauseGame();
@@ -79,7 +78,6 @@ public class Menu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 board.unpauseGame();
-                board.saved_message = "Press NEW GAME to start over, or LOAD SAVE to load a saved game";
                 menuWindow.dispose();
             }
         });

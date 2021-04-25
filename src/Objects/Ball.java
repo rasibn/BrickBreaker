@@ -15,6 +15,7 @@ public class Ball extends Sprite implements Cloneable{
     private void initBall() {
     	speed =7;
         setYDir(-speed);
+
     	setImageScaling(2.0);
         initState();
         setPath("src/PNG/58-Breakout-Tiles.png");

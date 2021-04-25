@@ -10,7 +10,7 @@ public class Player extends Sprite{
 
 	private static Player paddle;
 	private ArrayList<Missile> Missiles;	
-	private int defaultspeed = 5;
+	private int defaultspeed = 6 ;
 
 	private int PlayerLife;
 	private boolean ShootingEnabled = false;

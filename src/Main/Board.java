@@ -87,6 +87,23 @@ public class Board extends JPanel {
         balls = instances[0].getBalls();
         bricks = instances[0].getbricks();
 
+
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
+        balls.add(new Ball());
         balls.add(new Ball());
         balls.add(new Ball());
         maketheBricks();
@@ -94,8 +111,7 @@ public class Board extends JPanel {
 
         paddle.setX(instances[0].getPlayerX());
         paddle.setY(instances[0].getPlayerY());
-        paddle.initState();
-    }
+     }
     
     private void makeNewInstance() {
         makeGameInstance();
@@ -232,7 +248,7 @@ public class Board extends JPanel {
         g2d.setColor(Color.BLACK);
         g2d.setFont(font);
         if(messageVisble){
-            g2d.drawString(saved_message,(Commons.WIDTH - fontMetrics.stringWidth(saved_message)) / 2, Commons.HEIGHT/4);
+            g2d.drawString(saved_message,(Commons.WIDTH - fontMetrics.stringWidth(saved_message)) / 2, 20);
         }
     }
 
@@ -243,6 +259,7 @@ public class Board extends JPanel {
             if(!paused) {
                 doGameCycle();
             }
+            menuWindow.setLocationRelativeTo(Application.board);
             repaint();
         }
     }
@@ -370,7 +387,7 @@ private void checkCollisionPaddleBall() {
             System.out.println("Angle of Launch after collision: " + Math.toDegrees(radianValue));
             ball.setXDir((int)(ball.getSpeed()*Math.cos(radianValue)));
             ball.setYDir((int) (-Math.abs( ball.getSpeed()*Math.sin(radianValue))));
-            System.out.println("YDIR: " + ball.getYDir());
+            System.out.println("YDIR: " + ball.getYDir() + "/ XDIR: " + ball.getXDir());
         }
     }
   

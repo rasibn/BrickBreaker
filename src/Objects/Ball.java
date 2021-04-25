@@ -15,9 +15,8 @@ public class Ball extends Sprite implements Cloneable{
     private void initBall() {
     	speed =7;
         setYDir(-speed);
-
     	setImageScaling(2.0);
-        initState();
+        ballLaunchRandom();
         setPath("src/PNG/58-Breakout-Tiles.png");
         loadImage();
     }
@@ -66,10 +65,6 @@ public class Ball extends Sprite implements Cloneable{
 	            setYDir(Math.abs(getYDir()));
 	        }
     	}
-    }
-
-    public void initState() {
-        ballLaunchRandom();
     }
 
     public void setPath(String path){

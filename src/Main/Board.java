@@ -1,7 +1,5 @@
 package Main;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JWindow;
 import javax.swing.Timer;
@@ -14,7 +12,6 @@ import Objects.Missile;
 import Objects.Player;
 
 import java.awt.Color;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -89,23 +86,17 @@ public class Board extends JPanel {
 
 
         balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
-        balls.add(new Ball());
+        /*for(int i = 0; i < 20 ; i++) {
+            try {
+                Ball ball = balls.get(0).clone();
+                ball.ballLaunchRandom();
+                balls.add(ball);
+                
+             } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+             }
+        }
+        */
         maketheBricks();
         System.out.println("Current Life: " +paddle.getLife());
 
@@ -377,22 +368,22 @@ private void checkCollisionPaddleBall() {
         Ball ball = balls.get(i);
         if (ball.getRect().getMaxY() > Commons.BOTTOM_EDGE) {
             balls.remove(i);
-            if(balls.size() < 1){
-                paddle.loseALife();
-                balls.add(new Ball());
-                paddle.setBallStuckToPaddle(true);
-                ball.ballLaunchRandom();
-            }
-            System.out.println("Current Life: " + paddle.getLife());
-             
-            if(paddle.getLife()<1) {
-                stopGame();
-            }
-        }
-    }
-  
+            balls.size();
+                if(balls.size() < 1){
+                    System.out.println("Current Life: " + paddle.getLife());         
+                    paddle.loseALife();
+                    ball = new Ball();
+                    ball.ballLaunchRandom();
+                    balls.add(ball);
+                    paddle.setBallStuckToPaddle(true);
 
-      
+                    if(paddle.getLife()<1) {
+                        stopGame();
+                    }
+                }
+        }
+        
+    }
   }
   private void checkifOnlyUnbreakbleBricksLeft(){
     boolean NoBricksLeft = true;
@@ -500,8 +491,8 @@ private void checkCollisionPaddleBall() {
           paddle.keyPressed(e);
 
           if (key == KeyEvent.VK_ESCAPE) {
+            saved_message = "Press NEW GAME to start over, or LOAD SAVE to load a saved game";
               if(paused) {
-                 saved_message = "Press NEW GAME to start over, or LOAD SAVE to load a saved game";
                  menuWindow.setVisible(false);
                  unpauseGame();
               }

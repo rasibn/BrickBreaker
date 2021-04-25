@@ -44,7 +44,7 @@ public class Board extends JPanel {
     instance[] instances;
     //Remove these two when testing is done
 	private int TestingCount=0;
-    private int VictoryCount = 10000;
+    private int VictoryCount = 1000; //high enough so it doesn't print the victory message at the start
 	private int powerCount =0;
     BrickFactory factory = new BrickFactory();
     public Board() {
@@ -489,17 +489,18 @@ private void checkCollisionPaddleBall() {
     	  //4
     	  int key = e.getKeyCode(); 
           paddle.keyPressed(e);
-
-          if (key == KeyEvent.VK_ESCAPE) {
-            saved_message = "Press NEW GAME to start over, or LOAD SAVE to load a saved game";
-              if(paused) {
-                 menuWindow.setVisible(false);
-                 unpauseGame();
-              }
-              else { 
-                  menuWindow.setVisible(true); 
-                  pauseGame();
-              } 
+        if(inGame) {
+            if (key == KeyEvent.VK_ESCAPE) {
+                saved_message = "Press NEW GAME to start over, or LOAD SAVE to load a saved game";
+                if(paused) {
+                    menuWindow.setVisible(false);
+                    unpauseGame();
+                }
+                else { 
+                    menuWindow.setVisible(true); 
+                    pauseGame();
+                } 
+            }
         }
       }
   }

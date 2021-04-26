@@ -9,20 +9,21 @@ public class BrickFactory {
                 return new Brick2HP(x, y);
             if(type==3)
                 return new Brick3HP(x, y);
-            if(type==4){
-                return new BrickNotBreakable(x,y);
-            }
+          
             //Smaller Bricks
-            if(type==5) {
+            if(type==4) {
                 return new SmallBrick1HP(x, y);
             }
-            if(type==6) {
+            if(type==5) {
                 return new SmallBrick2HP(x, y);
             }
-            if(type==7) {
+            if(type==6) {
                 return new SmallBrick3HP(x, y);
             }
-
+            //Unbreakable bricks
+            if(type==7){
+                return new BrickNotBreakable(x,y);
+            }
             else
             return null;
         }

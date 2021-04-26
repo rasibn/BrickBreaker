@@ -1,4 +1,4 @@
-package Main;
+  package Main;
 import javax.swing.JFrame;
 import java.awt.EventQueue;
 
@@ -10,7 +10,7 @@ public class Application extends JFrame {
     }
     private void initUI() {
         add(new Board());
-        setTitle("Breakout");
+        setTitle("Breakout")  ;
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         pack();

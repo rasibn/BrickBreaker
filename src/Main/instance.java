@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class instance {
     private ArrayList<Ball> balls;
     private ArrayList<PowerUp> powerups;
-    private Brick[] bricks;
+    public Brick[] bricks;
     private int score;
     private int level;
     private int count;

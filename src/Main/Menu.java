@@ -84,7 +84,7 @@ public class Menu {
         loadSaveButton.addActionListener(new ActionListener() {
            
             public void actionPerformed(ActionEvent e) {
-                if(!board.instances[1].isEmpty()) {
+                if(!board.SavedInstance.isEmpty()) {
                     try {
                         board.getsavedInstance();
                     } catch (CloneNotSupportedException e1) {

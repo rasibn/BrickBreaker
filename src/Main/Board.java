@@ -43,12 +43,13 @@ public class Board extends JPanel {
     private boolean paused = false;
     private Brick[] bricks;
     boolean inGame = false;
-    
     private JWindow menuWindow;
-    instance[] instances;
+    private instance CurrentInstance;
+    instance SavedInstance;
     private int VictoryCount = 1000; //high enough so it doesn't print the victory message at the start
     BrickFactory factory = new BrickFactory();
     PowerUpFactory powerUpFactory =  new PowerUpFactory();
+
     public Board() {
 
         initBoard();
@@ -65,11 +66,9 @@ public class Board extends JPanel {
 
     private void gameInit() {
         paddle = Player.getPaddleInstance();
-        instances = new instance[2];
-
-        for(int i = 0; i < instances.length; i++) {
-            instances[i] = new instance();
-            }
+     
+        SavedInstance = new instance();
+        CurrentInstance = new instance();
         makeNewInstance();
         Menu menu = Menu.getMenu();
         menuWindow = menu.makingTheMenu(this);
@@ -79,20 +78,20 @@ public class Board extends JPanel {
     }
     //Don't use call this function. use makeNewInstance(); or makeNextLevel();
     private void makeGameInstance() {
-        instances[0] = new instance();
-        instances[0].setisEmpty(false);
+        CurrentInstance = new instance();
+        CurrentInstance.setisEmpty(false);
 
-        balls = instances[0].getBalls();
-        bricks = instances[0].getbricks();
-        powerups = instances[0].getPowerups();
+        balls = CurrentInstance.getBalls();
+        bricks = CurrentInstance.getbricks();
+        powerups = CurrentInstance.getPowerups();
 
         balls.add(new Ball());
 
         maketheBricks();
         System.out.println("Current Life: " +paddle.getLife());
 
-        paddle.setX(instances[0].getPlayerX());
-        paddle.setY(instances[0].getPlayerY());
+        paddle.setX(CurrentInstance.getPlayerX());
+        paddle.setY(CurrentInstance.getPlayerY());
      }
     
     void makeNewInstance() {
@@ -100,47 +99,47 @@ public class Board extends JPanel {
         paddle.initState();
 
     }
-    private void makeNextLevel() {
+    private void makeNextLevel() { //don't init the paddle here
         makeGameInstance();
         paddle.setBallStuckToPaddle(true);
     }
     void getsavedInstance() throws CloneNotSupportedException {
-        instances[0] = new instance();
+        CurrentInstance = new instance();
 
-        instances[0].setBallsCloneOf(instances[1].getBalls());
-        instances[0].setBricksCloneOf(instances[1].getbricks());
-        instances[0].setPowerUpCloneOf(instances[1].getPowerups());
+        CurrentInstance.setBallsCloneOf(SavedInstance.getBalls());
+        CurrentInstance.setBricksCloneOf(SavedInstance.getbricks());
+        CurrentInstance.setPowerUpCloneOf(SavedInstance.getPowerups());
 
-        balls = instances[0].getBalls();
-        bricks = instances[0].getbricks();
-        powerups = instances[0].getPowerups();
+        balls = CurrentInstance.getBalls();
+        bricks = CurrentInstance.getbricks();
+        powerups = CurrentInstance.getPowerups();
 
-        paddle.setX(instances[1].getPlayerX());
-        paddle.setY(instances[1].getPlayerY());
-        paddle.setLife(instances[1].getLife());
-        paddle.setScore(instances[1].getScore());
-        paddle.setLevel(instances[1].getLevel());
-        paddle.setPowerUp(instances[1].getplayerPowerUpAbility());
-        paddle.setPowerUp(instances[1].getplayerPowerUpSpeed());
-        paddle.setBallStuckToPaddle(instances[1].isBallStuckToPaddle());
+        paddle.setX(SavedInstance.getPlayerX());
+        paddle.setY(SavedInstance.getPlayerY());
+        paddle.setLife(SavedInstance.getLife());
+        paddle.setScore(SavedInstance.getScore());
+        paddle.setLevel(SavedInstance.getLevel());
+        paddle.setPowerUp(SavedInstance.getplayerPowerUpAbility());
+        paddle.setPowerUp(SavedInstance.getplayerPowerUpSpeed());
+        paddle.setBallStuckToPaddle(SavedInstance.isBallStuckToPaddle());
 
     }
     void saveTheGame() throws CloneNotSupportedException{
-        instances[1] = new instance();
-        instances[1].setisEmpty(false);
-        instances[1].setBallsCloneOf(instances[0].getBalls());
-        instances[1].setBricksCloneOf(instances[0].getbricks());
-        instances[1].setPowerUpCloneOf(instances[0].getPowerups());
+        SavedInstance = new instance();
+        SavedInstance.setisEmpty(false);
+        SavedInstance.setBallsCloneOf(CurrentInstance.getBalls());
+        SavedInstance.setBricksCloneOf(CurrentInstance.getbricks());
+        SavedInstance.setPowerUpCloneOf(CurrentInstance.getPowerups());
 
-        instances[1].setPlayerX(paddle.getX());
-        instances[1].setPlayerY(paddle.getY());
-        instances[1].setLife(paddle.getLife());
-        instances[1].setScore(paddle.getScore());
-        instances[1].setLevel(paddle.getLevel());
-        instances[1].setPlayerPowerUpAbility(paddle.getPlayerPowerUpAbility());
-        instances[1].setPlayerPowerUpSpeed(paddle.getPlayerPowerUpSpeed());
+        SavedInstance.setPlayerX(paddle.getX());
+        SavedInstance.setPlayerY(paddle.getY());
+        SavedInstance.setLife(paddle.getLife());
+        SavedInstance.setScore(paddle.getScore());
+        SavedInstance.setLevel(paddle.getLevel());
+        SavedInstance.setPlayerPowerUpAbility(paddle.getPlayerPowerUpAbility());
+        SavedInstance.setPlayerPowerUpSpeed(paddle.getPlayerPowerUpSpeed());
 
-        instances[1].setBallStuckToPaddle(paddle.isBallStuckToPaddle());
+        SavedInstance.setBallStuckToPaddle(paddle.isBallStuckToPaddle());
 
     }
     public void maketheBricks(){

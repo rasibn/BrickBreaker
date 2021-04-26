@@ -1,6 +1,7 @@
 package Main;
 import Objects.Ball;
 import Objects.Brick;
+import Objects.Player;
 import Objects.PowerUp;
 
 import java.util.ArrayList;
@@ -111,5 +112,25 @@ public class instance {
     }
     public ArrayList<PowerUp> getPowerups() {
         return powerups;
+    }
+    public void savePlayerInfo(Player paddle) {
+        this.setPlayerX(paddle.getX());
+        this.setPlayerY(paddle.getY());
+        this.setLife(paddle.getLife());
+        this.setScore(paddle.getScore());
+        this.setLevel(paddle.getLevel());
+        this.setPlayerPowerUpAbility(paddle.getPlayerPowerUpAbility());
+        this.setPlayerPowerUpSpeed(paddle.getPlayerPowerUpSpeed());
+        this.setBallStuckToPaddle(paddle.isBallStuckToPaddle());
+    }
+    public void getPlayerinfo(Player paddle) {
+        paddle.setX(this.getPlayerX());
+        paddle.setY(this.getPlayerY());
+        paddle.setLife(this.getLife());
+        paddle.setScore(this.getScore());
+        paddle.setLevel(this.getLevel());
+        paddle.setPowerUp(this.getplayerPowerUpAbility());
+        paddle.setPowerUp(this.getplayerPowerUpSpeed());
+        paddle.setBallStuckToPaddle(this.isBallStuckToPaddle());
     }
 }

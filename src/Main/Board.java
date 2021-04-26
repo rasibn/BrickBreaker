@@ -71,6 +71,7 @@ public class Board extends JPanel {
      
         SavedInstance = new instance();
         CurrentInstance = new instance();
+
         makeNewInstance();
         Menu menu = Menu.getMenu();
         menuWindow = menu.makingTheMenu(this);
@@ -81,13 +82,11 @@ public class Board extends JPanel {
     //Don't use call this function. use makeNewInstance(); or makeNextLevel();
     private void makeGameInstance() {
         CurrentInstance = new instance();
-        CurrentInstance.setisEmpty(false);
 
+        CurrentInstance.setisEmpty(false);
         balls = CurrentInstance.getBalls();
-        
         CurrentInstance.bricks = level.getbricks();
-        bricks = CurrentInstance.getbricks(); 
-        
+         bricks = CurrentInstance.getbricks(); 
         powerups = CurrentInstance.getPowerups();
 
         balls.add(new Ball());
@@ -118,16 +117,7 @@ public class Board extends JPanel {
         balls = CurrentInstance.getBalls();
         bricks = CurrentInstance.getbricks();
         powerups = CurrentInstance.getPowerups();
-
-        paddle.setX(SavedInstance.getPlayerX());
-        paddle.setY(SavedInstance.getPlayerY());
-        paddle.setLife(SavedInstance.getLife());
-        paddle.setScore(SavedInstance.getScore());
-        paddle.setLevel(SavedInstance.getLevel());
-        paddle.setPowerUp(SavedInstance.getplayerPowerUpAbility());
-        paddle.setPowerUp(SavedInstance.getplayerPowerUpSpeed());
-        paddle.setBallStuckToPaddle(SavedInstance.isBallStuckToPaddle());
-
+        SavedInstance.getPlayerinfo(paddle);
     }
     void saveTheGame() throws CloneNotSupportedException{
         SavedInstance = new instance();
@@ -135,17 +125,7 @@ public class Board extends JPanel {
         SavedInstance.setBallsCloneOf(CurrentInstance.getBalls());
         SavedInstance.setBricksCloneOf(CurrentInstance.getbricks());
         SavedInstance.setPowerUpCloneOf(CurrentInstance.getPowerups());
-
-        SavedInstance.setPlayerX(paddle.getX());
-        SavedInstance.setPlayerY(paddle.getY());
-        SavedInstance.setLife(paddle.getLife());
-        SavedInstance.setScore(paddle.getScore());
-        SavedInstance.setLevel(paddle.getLevel());
-        SavedInstance.setPlayerPowerUpAbility(paddle.getPlayerPowerUpAbility());
-        SavedInstance.setPlayerPowerUpSpeed(paddle.getPlayerPowerUpSpeed());
-
-        SavedInstance.setBallStuckToPaddle(paddle.isBallStuckToPaddle());
-
+        SavedInstance.savePlayerInfo(paddle);
     }
     
     @Override

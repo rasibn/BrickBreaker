@@ -10,7 +10,7 @@ public class Player extends Sprite{
 
 	private static Player paddle;
 	private ArrayList<Missile> Missiles;	
-	private int defaultspeed = 6 ;
+	private final int defaultSpeed = 6;
 
 	private int PlayerLife;
 	private boolean ShootingEnabled = false;
@@ -98,68 +98,66 @@ public class Player extends Sprite{
 	}
 	public void setPowerUp(String powerUpName) {
 		playerPowerUpAbility = powerUpName;
-		switch(powerUpName){
-			case "fire":
+		switch (powerUpName) {
+			case "fire" -> {
 				powerUpFire();
 				playerPowerUpAbility = powerUpName;
-				break;
-			case "long":
+			}
+			case "long" -> {
 				powerUpLong();
 				playerPowerUpAbility = powerUpName;
-
-				break;
-			case "extralife":
-				setLife(getLife()+1);
-				break;
-			case "small":
+			}
+			case "extralife" -> setLife(getLife() + 1);
+			case "small" -> {
 				powerUpSmall();
-				playerPowerUpAbility= powerUpName;
-				break;
-			case "slow":
+				playerPowerUpAbility = powerUpName;
+			}
+			case "slow" -> {
 				powerUpSlow();
 				playerPowerUpSpeed = powerUpName;
-				break;
-			case "fast":
+			}
+			case "fast" -> {
 				powerUpFast();
 				playerPowerUpSpeed = powerUpName;
-				break;
-			case "default":
+			}
+			case "default" -> {
 				playerPowerUpSpeed = powerUpName;
 				playerPowerUpAbility = powerUpName;
 				powerUpNone();
-				break;
-			default: 
+			}
+			default -> {
 				powerUpNone();
 				System.out.println("Wrong Power Name!");
+			}
 		}
 	}
 	private void powerUpFire() {
-		speed = defaultspeed;
+		speed = defaultSpeed;
 		setImageFire();
 		ShootingEnabled = true;
 	}
 	private void powerUpLong() {
-		speed = defaultspeed;
+		speed = defaultSpeed;
 		setImageLong();
 		ShootingEnabled = false;
 	}
 	private void powerUpSmall() {
-		speed = defaultspeed;
+		speed = defaultSpeed;
 		setImageSmall();
 		ShootingEnabled = false;
 	}
 	private void powerUpSlow() {
 		//setImagesDefault();
-		speed = defaultspeed/2;
+		speed = defaultSpeed/2;
 		//ShootingEnabled = false;
 	}
 	private void powerUpFast() {
 		//setImagesDefault();
-		speed = defaultspeed*2;
+		speed = defaultSpeed*2;
 		//ShootingEnabled = false;
 	}
 	private void powerUpNone() {
-		speed = defaultspeed;
+		speed = defaultSpeed;
 		setImagesDefault();
 		ShootingEnabled = false;
 	}
@@ -199,14 +197,15 @@ public class Player extends Sprite{
 	    
 	    if (key == KeyEvent.VK_LEFT) {setXDir(-speed);}
 	    if (key == KeyEvent.VK_RIGHT) {setXDir(speed);}
-	    if (key == KeyEvent.VK_SPACE) {if(isShootingEnabled()) {
-	    	Fire();
+	    if (key == KeyEvent.VK_SPACE) {
+	    	if(isShootingEnabled()) {
+	    		Fire();
 	    	}
 	    	BallStuckToPaddle = false;
 	    }
 
 	}
-	public void keyReleased(KeyEvent e) 
+	public void keyReleased(KeyEvent e)
 	{
 		int key = e.getKeyCode();
 		

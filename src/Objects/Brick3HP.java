@@ -7,7 +7,6 @@ public class Brick3HP extends Brick {
         score = HP*10;
         this.updateImage();
        }
-       
       @Override
       public void updateImage(){
        if(HP==3)

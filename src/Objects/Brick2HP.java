@@ -7,7 +7,7 @@ public class Brick2HP extends Brick {
         score = HP*10;
         this.updateImage();
        }   
-   @Override
+    @Override
     public void updateImage(){
       if(HP ==2)
         SetPath("src/PNG/03-Breakout-Tiles.png");

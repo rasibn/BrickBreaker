@@ -6,8 +6,7 @@ public class BrickNotBreakable extends Brick {
     super.HP = -1;
     score = 100;
     this.updateImage();
-   } 
-
+   }
    @Override
    public void updateImage(){
     SetPath("src/PNG/07-Breakout-Tiles.png");

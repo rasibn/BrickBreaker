@@ -21,7 +21,7 @@ public class Missile extends Sprite {
         var ii = new ImageIcon("src/PNG/1.png");
         image = ii.getImage();
     }
-
+    @Override
     public void move() {
         setY(getY() + getYDir());
 

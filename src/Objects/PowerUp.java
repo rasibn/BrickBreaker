@@ -23,6 +23,7 @@ public abstract class PowerUp extends Sprite implements Cloneable{
     public String getType() {
         return PowerUpName;
     }
+    @Override
     public void move() {
         setY(getY() + getYDir());
 
@@ -35,8 +36,7 @@ public abstract class PowerUp extends Sprite implements Cloneable{
 	}
     @Override
     public PowerUp clone() throws CloneNotSupportedException {
-        PowerUp newPowerUp = (PowerUp) super.clone();
-        return newPowerUp;
+        return (PowerUp) super.clone();
     }
 }
 

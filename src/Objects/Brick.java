@@ -24,10 +24,7 @@ public abstract class Brick extends Sprite implements Cloneable{
 
         Random rand = new Random();
 
-        if(rand.nextInt(5) == 1)
-            setCanMove(true);
-        else
-            setCanMove(false);
+        setCanMove(rand.nextInt(5) == 1);
     }
 
     public void loadImage() {
@@ -41,7 +38,7 @@ public abstract class Brick extends Sprite implements Cloneable{
     }
     
     protected void SetPath(String path){
-     this.path = path;
+        this.path = path;
     }
 
     public boolean isDestroyed() {
@@ -66,7 +63,7 @@ public abstract class Brick extends Sprite implements Cloneable{
     }
 
     public void move(){
-        if(CanMove==true){
+        if(CanMove){
             setX(getX()+getXDir());
         }
     }
@@ -74,14 +71,13 @@ public abstract class Brick extends Sprite implements Cloneable{
         if(direction.equalsIgnoreCase("left"))    
             setXDir(-1*Math.abs(getXDir()));
         else if(direction.equalsIgnoreCase("right"))
-            setXDir( 1*Math.abs(getXDir()));
+            setXDir(Math.abs(getXDir()));
         else {
             System.out.println("There is an error in brick Class Change Direction");
         }
     }
     @Override
     public Brick clone() throws CloneNotSupportedException {
-        Brick newBrick = (Brick) super.clone();
-        return newBrick;
+        return (Brick) super.clone();
     }
 }

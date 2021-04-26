@@ -43,6 +43,7 @@ public class Board extends JPanel {
     private boolean paused = false;
     private Brick[] bricks;
     boolean inGame = false;
+    
     private JWindow menuWindow;
     instance[] instances;
     private int VictoryCount = 1000; //high enough so it doesn't print the victory message at the start

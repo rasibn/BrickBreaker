@@ -16,7 +16,6 @@ public class instance {
     private int playerY;
     private boolean isEmpty;
     private int playerLife;
-    private int playerXDir;
     private boolean BallStuckToPaddle;
     private String playerPowerUpAbility;
     private String playerPowerUpSpeed;
@@ -65,7 +64,7 @@ public class instance {
         return playerPowerUpAbility;
     }
     public String getplayerPowerUpSpeed() {
-        return playerPowerUpAbility;
+        return playerPowerUpSpeed;
     }
     public void setScore(int score) {
             this.score = score;

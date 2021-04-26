@@ -12,6 +12,7 @@ import Objects.Missile;
 import Objects.Player;
 import Objects.PowerUp;
 import Objects.PowerUpFactory;
+import Objects.RandomLevel;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -49,6 +50,7 @@ public class Board extends JPanel {
     private int VictoryCount = 1000; //high enough so it doesn't print the victory message at the start
     BrickFactory factory = new BrickFactory();
     PowerUpFactory powerUpFactory =  new PowerUpFactory();
+    RandomLevel level = new RandomLevel();
 
     public Board() {
 
@@ -82,12 +84,15 @@ public class Board extends JPanel {
         CurrentInstance.setisEmpty(false);
 
         balls = CurrentInstance.getBalls();
-        bricks = CurrentInstance.getbricks();
+        
+        CurrentInstance.bricks = level.getbricks();
+        bricks = CurrentInstance.getbricks(); 
+        
         powerups = CurrentInstance.getPowerups();
 
         balls.add(new Ball());
 
-        maketheBricks();
+        level.Generate();
         System.out.println("Current Life: " +paddle.getLife());
 
         paddle.setX(CurrentInstance.getPlayerX());
@@ -142,18 +147,7 @@ public class Board extends JPanel {
         SavedInstance.setBallStuckToPaddle(paddle.isBallStuckToPaddle());
 
     }
-    public void maketheBricks(){
-        int k = 0;
-        //Make the Bricks
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 6; j++) {
-                int rand = ((int)(Math.random()*7 )) + 1;
-                bricks[k] = factory.getBrick(j * 145 + 120, i *50 + 50, rand);
-                k++;
-            }
-        }
-    }
-
+    
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

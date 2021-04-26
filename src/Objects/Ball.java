@@ -11,8 +11,10 @@ public class Ball extends Sprite implements Cloneable{
 
         initBall();
     }
-    
+      
     private void initBall() {
+        setX(Player.getPaddleInstance().getX() + Player.getPaddleInstance().getImageWidth()/2 - this.getImageWidth()/2);
+    	setY(Player.getPaddleInstance().getY() - this.getImageHeight());
     	speed =7;
         setYDir(-speed);
     	setImageScaling(2.0);

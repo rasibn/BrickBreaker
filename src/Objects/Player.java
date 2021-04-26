@@ -16,7 +16,8 @@ public class Player extends Sprite{
 	private boolean ShootingEnabled = false;
 	private boolean BallStuckToPaddle;
 	private int score;
-	private String playerPowerUp;
+	private String playerPowerUpAbility = "default";
+	private String playerPowerUpSpeed ="default";
 	private int level;
 	
 	private Player(){
@@ -96,27 +97,35 @@ public class Player extends Sprite{
 	
 	}
 	public void setPowerUp(String powerUpName) {
-		playerPowerUp = powerUpName;
+		playerPowerUpAbility = powerUpName;
 		switch(powerUpName){
 			case "fire":
-			powerUpFire();
+				powerUpFire();
+				playerPowerUpAbility = powerUpName;
 				break;
 			case "long":
 				powerUpLong();
+				playerPowerUpAbility = powerUpName;
+
 				break;
 			case "extralife":
 				setLife(getLife()+1);
 				break;
 			case "small":
 				powerUpSmall();
+				playerPowerUpAbility= powerUpName;
 				break;
 			case "slow":
 				powerUpSlow();
+				playerPowerUpSpeed = powerUpName;
 				break;
 			case "fast":
 				powerUpFast();
+				playerPowerUpSpeed = powerUpName;
 				break;
 			case "default":
+				playerPowerUpSpeed = powerUpName;
+				playerPowerUpAbility = powerUpName;
 				powerUpNone();
 				break;
 			default: 
@@ -140,14 +149,14 @@ public class Player extends Sprite{
 		ShootingEnabled = false;
 	}
 	private void powerUpSlow() {
-		setImagesDefault();
+		//setImagesDefault();
 		speed = defaultspeed/2;
-		ShootingEnabled = false;
+		//ShootingEnabled = false;
 	}
 	private void powerUpFast() {
-		setImagesDefault();
+		//setImagesDefault();
 		speed = defaultspeed*2;
-		ShootingEnabled = false;
+		//ShootingEnabled = false;
 	}
 	private void powerUpNone() {
 		speed = defaultspeed;
@@ -228,8 +237,11 @@ public class Player extends Sprite{
 	public int getLevel() {
 		return level;
 	}
-	public String getPlayerPowerUp() {
-		return playerPowerUp;
+	public String getPlayerPowerUpAbility() {
+		return playerPowerUpAbility;
+	}
+	public String getPlayerPowerUpSpeed() {
+		return playerPowerUpSpeed;
 	}	
 }
 	

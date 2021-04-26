@@ -13,12 +13,13 @@ public class instance {
     private int level;
     private int count;
     private int playerX;
-    private boolean isEmpty;
     private int playerY;
+    private boolean isEmpty;
     private int playerLife;
+    private int playerXDir;
     private boolean BallStuckToPaddle;
-    private String playerPowerUp;
-
+    private String playerPowerUpAbility;
+    private String playerPowerUpSpeed;
     public instance() {
           bricks = new Brick[Commons.N_OF_BRICKS];
           balls = new ArrayList<>();
@@ -53,11 +54,18 @@ public class instance {
     public boolean isEmpty() {
     return isEmpty;
     }
-    public void setPlayerPowerUp(String playerPowerUp) {
-        this.playerPowerUp = playerPowerUp;
+    public void setPlayerPowerUpAbility(String playerPowerUpAbility) {
+        this.playerPowerUpAbility = playerPowerUpAbility;
     }
-    public String getplayerPowerUp() {
-        return playerPowerUp;
+  
+    public void setPlayerPowerUpSpeed(String playerPowerUpSpeed) {
+        this.playerPowerUpSpeed = playerPowerUpSpeed;
+    }
+    public String getplayerPowerUpAbility() {
+        return playerPowerUpAbility;
+    }
+    public String getplayerPowerUpSpeed() {
+        return playerPowerUpAbility;
     }
     public void setScore(int score) {
             this.score = score;

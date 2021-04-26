@@ -35,16 +35,4 @@ public class Animation {
 		var ii = new ImageIcon(ImagesPaths.get(CurrentImageNum));
 		return ii.getImage();
 	}
-	/*
-	public Image CycleImageToNextImage(){
-		if( CurrentImageNum >= ImagesPaths.size()) {
-			CurrentImageNum++;
-		}
-		else {
-			return null;
-		}
-			var ii = new ImageIcon(ImagesPaths.get(CurrentImageNum));
-			return ii.getImage();
-	}
-	*/
 }

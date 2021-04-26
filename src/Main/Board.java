@@ -119,7 +119,8 @@ public class Board extends JPanel {
         paddle.setLife(instances[1].getLife());
         paddle.setScore(instances[1].getScore());
         paddle.setLevel(instances[1].getLevel());
-        paddle.setPowerUp(instances[1].getplayerPowerUp());
+        paddle.setPowerUp(instances[1].getplayerPowerUpAbility());
+        paddle.setPowerUp(instances[1].getplayerPowerUpSpeed());
         paddle.setBallStuckToPaddle(instances[1].isBallStuckToPaddle());
 
     }
@@ -135,7 +136,9 @@ public class Board extends JPanel {
         instances[1].setLife(paddle.getLife());
         instances[1].setScore(paddle.getScore());
         instances[1].setLevel(paddle.getLevel());
-        instances[1].setPlayerPowerUp(paddle.getPlayerPowerUp());
+        instances[1].setPlayerPowerUpAbility(paddle.getPlayerPowerUpAbility());
+        instances[1].setPlayerPowerUpSpeed(paddle.getPlayerPowerUpSpeed());
+
         instances[1].setBallStuckToPaddle(paddle.isBallStuckToPaddle());
 
     }
@@ -505,7 +508,7 @@ private void checkCollisionPaddleBall() {
 
                       if(bricks[b].isDestroyed()) {
                         Random rand = new Random();
-                        powerups.add(powerUpFactory.getPowerUp(rand.nextInt(7), bricks[i].getX()+ bricks[b].getImageWidth(), bricks[b].getY()));
+                        powerups.add(powerUpFactory.getPowerUp(rand.nextInt(8), bricks[i].getX()+ bricks[b].getImageWidth(), bricks[b].getY()));
                     }
 		          }
               }

@@ -88,7 +88,6 @@ public class Ball extends Sprite implements Cloneable{
 
     @Override
     public Ball clone() throws CloneNotSupportedException {
-        //newBrick.setName(newBrick.getName());
         return (Ball) super.clone();
     }
 }

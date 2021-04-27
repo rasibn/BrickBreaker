@@ -226,7 +226,6 @@ public class Board extends JPanel {
     }
 
     private void cleanUp() {
-       System.out.println(balls.size());
         balls.removeIf(Sprite::isDestroyed);
         powerUps.removeIf(Sprite::isDestroyed);
         missiles.removeIf(Sprite::isDestroyed);
@@ -265,20 +264,22 @@ public class Board extends JPanel {
         for (PowerUp powerup: powerUps) {
             if(powerup.getRect().intersects(paddle.getRect())) {
                 if(powerup.getType().equalsIgnoreCase("moreball")){
+                    ArrayList<Ball> newBalls = new ArrayList<>();
                     for(Ball ball: balls) {
                         try {
                             Ball ballCopy = balls.get(0).clone();
                             ballCopy.ballLaunchRandom();
-                            balls.add(ballCopy);
+                            newBalls.add(ballCopy);
 
                             ballCopy = balls.get(0).clone();
                             ballCopy.ballLaunchRandom();
-                            balls.add(ballCopy);
+                            newBalls.add(ballCopy);
 
                          } catch (CloneNotSupportedException e) {
                             e.printStackTrace();
                          }
                     }
+                    balls.addAll(newBalls);
                 } 
                 else if (powerup.getType().equalsIgnoreCase("redball")){
                     for (Ball ball : balls) {

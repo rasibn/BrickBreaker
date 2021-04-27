@@ -38,6 +38,7 @@ public class Ball extends Sprite implements Cloneable{
         setXDir((int) (speed*Math.cos(Math.toRadians(degreevalue))));      
     }
 
+    @Override
     public void loadImage() {
         var ii = new ImageIcon(path);
         image = ii.getImage();
@@ -46,8 +47,12 @@ public class Ball extends Sprite implements Cloneable{
     public void powerUpCloneBall() {
     	//Will make this later.
     }
+
+    @Override
     public void move() {
-        
+        if (getY() >= Commons.HEIGHT) {
+            setDestroyed(true);
+        }
     	if(Player.getPaddleInstance().isBallStuckToPaddle()) {
     		setX(Player.getPaddleInstance().getX() + Player.getPaddleInstance().getImageWidth()/2 - this.getImageWidth()/2);
     		setY(Player.getPaddleInstance().getY() - this.getImageHeight());
@@ -75,13 +80,15 @@ public class Ball extends Sprite implements Cloneable{
 
     public void ChangeToRedBall() {
         path = "src/PNG/redball.png";
-        //do something else...
         loadImage();
     }
+    public boolean isRedBall(){
+        return path.equals("src/PNG/redball.png");
+    }
+
     @Override
     public Ball clone() throws CloneNotSupportedException {
-        Ball newBall = (Ball) super.clone();
         //newBrick.setName(newBrick.getName());
-        return newBall;
+        return (Ball) super.clone();
     }
 }

@@ -4,8 +4,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 public abstract class Brick extends Sprite implements Cloneable{
-
-    private boolean destroyed;
+    protected int DefaultHP;
     protected int HP;
     protected int score;
     protected String path;
@@ -19,15 +18,11 @@ public abstract class Brick extends Sprite implements Cloneable{
     	setX(x);
     	setY(y);
         setXDir(2);
-        destroyed = false; 
         CanMove = true;
 
         Random rand = new Random();
 
-        if(rand.nextInt(5) == 1)
-            setCanMove(true);
-        else
-            setCanMove(false);
+        setCanMove(rand.nextInt(5) == 1);
     }
 
     public void loadImage() {
@@ -41,14 +36,11 @@ public abstract class Brick extends Sprite implements Cloneable{
     }
     
     protected void SetPath(String path){
-     this.path = path;
+        this.path = path;
     }
-
-    public boolean isDestroyed() {
-        return destroyed;
-    }
+    @Override
     public void setDestroyed(boolean val) {
-        destroyed = val;
+        super.setDestroyed(true);
         Player.getPaddleInstance().setScore(Player.getPaddleInstance().getScore()+this.score);
     }
 
@@ -56,17 +48,21 @@ public abstract class Brick extends Sprite implements Cloneable{
         if(HP>0) {
             HP = HP-1;
         }
-        if(HP==0){
+        if(HP==0 && !isDestroyed()){
           setDestroyed(true);
         }
     }
     public abstract void updateImage();
     public void setBreakable(){
+        DefaultHP = HP;
         HP=1;
+    }
+    public void returnHPToNormal(){
+        HP= DefaultHP;
     }
 
     public void move(){
-        if(CanMove==true){
+        if(CanMove){
             setX(getX()+getXDir());
         }
     }
@@ -74,14 +70,13 @@ public abstract class Brick extends Sprite implements Cloneable{
         if(direction.equalsIgnoreCase("left"))    
             setXDir(-1*Math.abs(getXDir()));
         else if(direction.equalsIgnoreCase("right"))
-            setXDir( 1*Math.abs(getXDir()));
+            setXDir(Math.abs(getXDir()));
         else {
             System.out.println("There is an error in brick Class Change Direction");
         }
     }
     @Override
     public Brick clone() throws CloneNotSupportedException {
-        Brick newBrick = (Brick) super.clone();
-        return newBrick;
+        return (Brick) super.clone();
     }
 }

@@ -6,7 +6,6 @@ public abstract class PowerUp extends Sprite implements Cloneable{
 
     protected String path;
     protected String PowerUpName;
-	private boolean OutOfBounds;
     public PowerUp() {
         initPowerUp();
     }
@@ -23,20 +22,17 @@ public abstract class PowerUp extends Sprite implements Cloneable{
     public String getType() {
         return PowerUpName;
     }
+    @Override
     public void move() {
         setY(getY() + getYDir());
 
         if (getY() >= Commons.HEIGHT) {
-           OutOfBounds = true;
+           setDestroyed(true);
         }
     }
-	public boolean isOutOfBounds() {
-		return OutOfBounds;
-	}
     @Override
     public PowerUp clone() throws CloneNotSupportedException {
-        PowerUp newPowerUp = (PowerUp) super.clone();
-        return newPowerUp;
+        return (PowerUp) super.clone();
     }
 }
 

@@ -4,15 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JWindow;
 import javax.swing.Timer;
 
-import Objects.Ball;
-import Objects.Brick;
-import Objects.BrickFactory;
-import Objects.BrickNotBreakable;
-import Objects.Missile;
-import Objects.Player;
-import Objects.PowerUp;
-import Objects.PowerUpFactory;
-import Objects.RandomLevel;
+import Objects.*;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -41,7 +33,8 @@ public class Board extends JPanel {
 	private Timer timer;
     String saved_message = "Hi. Click NEW GAME or load a SAVED GAME.";
     private ArrayList<Ball> balls;
-    private ArrayList<PowerUp> powerups;
+    private ArrayList<PowerUp> powerUps;
+    private ArrayList<Missile> missiles;
     private Player paddle;
     private boolean paused = false;
     private Brick[] bricks;
@@ -88,8 +81,10 @@ public class Board extends JPanel {
         CurrentInstance.setisEmpty(false);
         balls = CurrentInstance.getBalls();
         CurrentInstance.bricks = level.getbricks();
-         bricks = CurrentInstance.getbricks(); 
-        powerups = CurrentInstance.getPowerups();
+
+        bricks = CurrentInstance.getbricks();
+        powerUps = CurrentInstance.getPowerups();
+        missiles = paddle.getMissiles();
 
         balls.add(new Ball());
 
@@ -118,7 +113,7 @@ public class Board extends JPanel {
 
         balls = CurrentInstance.getBalls();
         bricks = CurrentInstance.getbricks();
-        powerups = CurrentInstance.getPowerups();
+        powerUps = CurrentInstance.getPowerups();
         SavedInstance.getPlayerinfo(paddle);
     }
     void saveTheGame() throws CloneNotSupportedException{
@@ -173,26 +168,16 @@ public class Board extends JPanel {
         for (Ball ball : balls) {
             g2d.drawImage(ball.getImage(), ball.getX(), ball.getY(), ball.getImageWidth(), ball.getImageHeight(), this);
         }
-        for (PowerUp powerUp : powerups) {
+        for (PowerUp powerUp : powerUps) {
             g2d.drawImage(powerUp.getImage(), powerUp.getX(), powerUp.getY(), powerUp.getImageWidth(), powerUp.getImageHeight(), this);
         }
-
-        for (int i = 0; i < Commons.N_OF_BRICKS; i++) {
-            if (!bricks[i].isDestroyed()) {
-                g2d.drawImage(bricks[i].getImage(), bricks[i].getX(), bricks[i].getY(), bricks[i].getImageWidth(), bricks[i].getImageHeight(), this);
-            }
-
+        for (Missile missile: missiles) {
+            g2d.drawImage(missile.getImage(), missile.getX(),missile.getY(), missile.getImageWidth(), missile.getImageHeight(), this);
         }
-
-        for (int i = 0; i < paddle.getMissiles().size(); i++) {
-        	 Missile missile = paddle.getMissiles().get(i);
-
-        	if (!missile.isOutOfBounds() && !missile.isDestroyed()) {
-                g2d.drawImage(missile.getImage(), missile.getX(),missile.getY(), missile.getImageWidth(), missile.getImageHeight(), this);
+        for (Brick brick: bricks) {
+            if (!brick.isDestroyed()) {
+                g2d.drawImage(brick.getImage(), brick.getX(), brick.getY(), brick.getImageWidth(), brick.getImageHeight(), this);
             }
-        	else {
-        		paddle.getMissiles().remove(i);
-        	}
         }
     }
     private void DrawSavedMessage(Graphics2D g2d) {
@@ -226,20 +211,41 @@ public class Board extends JPanel {
         for (Ball ball : balls) {
             ball.move();
         }
-        for (PowerUp powerup : powerups) {
+        for (PowerUp powerup : powerUps) {
             powerup.move();
         }
-
-        for(int i = 0; i < paddle.getMissiles().size(); i++) {
-       	 	Missile missile = paddle.getMissiles().get(i);
-       	 	missile.move();	
+        for(Missile missile: missiles) {
+       	 	missile.move();
         }
     }
     private void doGameCycle() {
         moveGameObjects();
         checkCollision();
-        checkifOnlyUnbreakbleBricksLeft();      
+        checkifOnlyUnbreakbleBricksLeft();
+        cleanUp();
     }
+
+    private void cleanUp() {
+       System.out.println(balls.size());
+        balls.removeIf(Sprite::isDestroyed);
+        powerUps.removeIf(Sprite::isDestroyed);
+        missiles.removeIf(Sprite::isDestroyed);
+
+        if(balls.size() < 1){
+            System.out.println("Current Life: " + paddle.getLife());
+            paddle.loseALife();
+            Ball ball = new Ball();
+            ball.ballLaunchRandom();
+            balls.add(ball);
+
+            paddle.setBallStuckToPaddle(true);
+
+            if(paddle.getLife()<1) {
+                stopGame();
+            }
+        }
+    }
+
     private void stopGame() {
         saved_message = "Game Over. Try Again. Choose NEW GAME or load a SAVED GAME";
         inGame = false;
@@ -256,21 +262,19 @@ public class Board extends JPanel {
     }
   
     private void checkCollisionPowerupPaddle() { 
-        for (int j = 0; j < powerups.size(); j++) {
-            PowerUp powerup = powerups.get(j);
+        for (PowerUp powerup: powerUps) {
             if(powerup.getRect().intersects(paddle.getRect())) {
                 if(powerup.getType().equalsIgnoreCase("moreball")){
-                    int ballsize = balls.size(); 
-                    for(int i=0; i< ballsize; i++) {
+                    for(Ball ball: balls) {
                         try {
-                            Ball ball = balls.get(0).clone();
-                            ball.ballLaunchRandom();
-                            balls.add(ball);
+                            Ball ballCopy = balls.get(0).clone();
+                            ballCopy.ballLaunchRandom();
+                            balls.add(ballCopy);
 
-                            ball = balls.get(0).clone();
-                            ball.ballLaunchRandom();
-                            balls.add(ball);
-                            
+                            ballCopy = balls.get(0).clone();
+                            ballCopy.ballLaunchRandom();
+                            balls.add(ballCopy);
+
                          } catch (CloneNotSupportedException e) {
                             e.printStackTrace();
                          }
@@ -280,18 +284,12 @@ public class Board extends JPanel {
                     for (Ball ball : balls) {
                         ball.ChangeToRedBall();
                     }
-                    for (Brick brick : bricks) {
-                        brick.setBreakable();
-                    }
                 }
                 else {
                     paddle.setPowerUp(powerup.getType());
                 }
                 paddle.setBallStuckToPaddle(true);
-                powerups.remove(j);
-            }
-            if(powerup.isOutOfBounds()) {
-                powerups.remove(j);
+                powerup.setDestroyed(true);
             }
         }
 }
@@ -299,9 +297,7 @@ public class Board extends JPanel {
     private void checkCollisionBrickMovement(){
         for(int i=0;i<bricks.length;i++){
             for(int j=0;j<bricks.length;j++){
-                if(i==j) {
-                }
-                else{
+                if(i!=j){
                     if(bricks[i].getRect().intersects(bricks[j].getRect()) && !bricks[i].isDestroyed() && !bricks[j].isDestroyed()){  
                       if(bricks[j].getRect().getMaxX()>bricks[i].getRect().getMaxX()){
                             bricks[i].ChangeDirection("left");
@@ -374,24 +370,10 @@ private void checkCollisionPaddleBall() {
   
   }
   private void checkCollisionBallsDropped() {
-    for(int i = 0; i < balls.size();i++) {
-        Ball ball = balls.get(i);
+    for(Ball ball: balls) {
         if (ball.getRect().getMaxY() > Commons.BOTTOM_EDGE) {
-            balls.remove(i);
-                if(balls.size() < 1){
-                    System.out.println("Current Life: " + paddle.getLife());         
-                    paddle.loseALife();
-                    ball = new Ball();
-                    ball.ballLaunchRandom();
-                    balls.add(ball);
-                    paddle.setBallStuckToPaddle(true);
-
-                    if(paddle.getLife()<1) {
-                        stopGame();
-                    }
-                }
+            ball.setDestroyed(true);
         }
-        
     }
   }
   private void checkifOnlyUnbreakbleBricksLeft(){
@@ -406,9 +388,16 @@ private void checkCollisionPaddleBall() {
                   BreakableBricksLeft = true;
                   break;
               }
+              if(balls.get(0).isRedBall()) {
+                  brick.setBreakable();
+              }
+              else{
+                  brick.returnHPToNormal();
+              }
           }
-
       }
+
+
       //if no breakable bricks left then:
         if(!BreakableBricksLeft){
             for (Ball ball : balls) {
@@ -426,9 +415,9 @@ private void checkCollisionPaddleBall() {
   }
 
   private void checkCollisionBallBricks() {
-  	   for (int i = 0; i < Commons.N_OF_BRICKS; i++) {
+  	   for (Brick brick: bricks) {
            for (Ball ball : balls) {
-               if ((ball.getRect()).intersects(bricks[i].getRect())) {
+               if ((ball.getRect()).intersects(brick.getRect())) {
 
                    int ballLeft = (int) ball.getRect().getMinX();
                    int ballHeight = (int) ball.getRect().getHeight();
@@ -439,24 +428,25 @@ private void checkCollisionPaddleBall() {
                    var pointLeft = new Point(ballLeft - 1, ballTop);
                    var pointTop = new Point(ballLeft, ballTop - 1);
                    var pointBottom = new Point(ballLeft, ballTop + ballHeight + 1);
-                   if (!bricks[i].isDestroyed()) {
-                       if (bricks[i].getRect().contains(pointRight)) {
+
+                   if (!brick.isDestroyed()) {
+                       if (brick.getRect().contains(pointRight)) {
                            ball.setXDir(-1 * Math.abs(ball.getXDir()));
-                       } else if (bricks[i].getRect().contains(pointLeft)) {
+                       } else if (brick.getRect().contains(pointLeft)) {
                            ball.setXDir(Math.abs(ball.getXDir()));
                        }
-                       if (bricks[i].getRect().contains(pointTop)) {
+                       if (brick.getRect().contains(pointTop)) {
                            ball.setYDir(Math.abs(ball.getYDir()));
-                       } else if (bricks[i].getRect().contains(pointBottom)) {
+                       } else if (brick.getRect().contains(pointBottom)) {
                            ball.setYDir(-1 * Math.abs(ball.getYDir()));
                        }
-                       bricks[i].DecreaseHP();
-                       bricks[i].updateImage();
+                       brick.DecreaseHP();
+                       brick.updateImage();
 
-                       if (bricks[i].isDestroyed()) {
+                       if (brick.isDestroyed()) {
                            Random rand = new Random();
                            if (rand.nextInt(3) == 1) {
-                               powerups.add(powerUpFactory.getPowerUp(rand.nextInt(8), bricks[i].getX() + bricks[i].getImageWidth() / 2, bricks[i].getY()));
+                               powerUps.add(powerUpFactory.getPowerUp(rand.nextInt(8), brick.getX() + brick.getImageWidth() / 2, brick.getY()));
                            }
                        }
                    }
@@ -465,17 +455,18 @@ private void checkCollisionPaddleBall() {
         }
   	}
   private void checkCollisionMissileBricks() {
-	  for(int i = 0; i < paddle.getMissiles().size();i++) {
-		  for (int b = 0; b < Commons.N_OF_BRICKS; b++) {
-              if (!bricks[b].isDestroyed()) {
-		          if ((paddle.getMissiles().get(i).getRect()).intersects(bricks[b].getRect())) {
-	                  bricks[b].DecreaseHP();
-                      bricks[b].updateImage();
-	                  paddle.getMissiles().get(i).setDestroyed(true);
+	  for(Missile missile: missiles) {
+		  for (Brick brick: bricks) {
+              if (!brick.isDestroyed()) {
+		          if ((missile.getRect()).intersects(brick.getRect())) {
+	                  brick.DecreaseHP();
+                      brick.updateImage();
 
-                      if(bricks[b].isDestroyed()) {
+	                  missile.setDestroyed(true);
+
+                      if(brick.isDestroyed()) {
                         Random rand = new Random();
-                        powerups.add(powerUpFactory.getPowerUp(rand.nextInt(8), bricks[i].getX()+ bricks[b].getImageWidth(), bricks[b].getY()));
+                        powerUps.add(powerUpFactory.getPowerUp(rand.nextInt(8), brick.getX()+ brick.getImageWidth(), brick.getY()));
                     }
 		          }
               }

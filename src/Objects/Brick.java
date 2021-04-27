@@ -4,8 +4,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 public abstract class Brick extends Sprite implements Cloneable{
-
-    private boolean destroyed;
+    protected int DefaultHP;
     protected int HP;
     protected int score;
     protected String path;
@@ -19,7 +18,6 @@ public abstract class Brick extends Sprite implements Cloneable{
     	setX(x);
     	setY(y);
         setXDir(2);
-        destroyed = false; 
         CanMove = true;
 
         Random rand = new Random();
@@ -40,12 +38,9 @@ public abstract class Brick extends Sprite implements Cloneable{
     protected void SetPath(String path){
         this.path = path;
     }
-
-    public boolean isDestroyed() {
-        return destroyed;
-    }
+    @Override
     public void setDestroyed(boolean val) {
-        destroyed = val;
+        super.setDestroyed(true);
         Player.getPaddleInstance().setScore(Player.getPaddleInstance().getScore()+this.score);
     }
 
@@ -53,13 +48,17 @@ public abstract class Brick extends Sprite implements Cloneable{
         if(HP>0) {
             HP = HP-1;
         }
-        if(HP==0){
+        if(HP==0 && !isDestroyed()){
           setDestroyed(true);
         }
     }
     public abstract void updateImage();
     public void setBreakable(){
+        DefaultHP = HP;
         HP=1;
+    }
+    public void returnHPToNormal(){
+        HP= DefaultHP;
     }
 
     public void move(){

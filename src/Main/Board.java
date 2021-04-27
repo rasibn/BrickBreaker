@@ -101,8 +101,8 @@ public class Board extends JPanel {
     void makeNewInstance() {
         makeGameInstance();
         paddle.initState();
-
     }
+    
     private void makeNextLevel() { //don't init the paddle here
         makeGameInstance();
         paddle.setBallStuckToPaddle(true);

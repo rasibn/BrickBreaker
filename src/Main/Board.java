@@ -26,7 +26,7 @@ import java.util.Random;
 public class Board extends JPanel {
 
     /**
-	 * 
+	 *
 	 */
 	@Serial
     private static final long serialVersionUID = 1L;
@@ -39,6 +39,7 @@ public class Board extends JPanel {
     private boolean paused = false;
     private Brick[] bricks;
     boolean inGame = false;
+    private Random rand = new Random();
     private JWindow menuWindow;
     private instance CurrentInstance;
     instance SavedInstance;
@@ -58,12 +59,12 @@ public class Board extends JPanel {
         setPreferredSize(new Dimension(Commons.WIDTH, Commons.HEIGHT));
         setBackground(Color.WHITE);
         gameInit();
-        
+
     }
 
     private void gameInit() {
         paddle = Player.getPaddleInstance();
-     
+
         SavedInstance = new instance();
         CurrentInstance = new instance();
 
@@ -94,11 +95,10 @@ public class Board extends JPanel {
         paddle.setX(CurrentInstance.getPlayerX());
         paddle.setY(CurrentInstance.getPlayerY());
      }
-    
+
     void makeNewInstance() {
         makeGameInstance();
         paddle.initState();
-
     }
     private void makeNextLevel() { //don't init the paddle here
         makeGameInstance();
@@ -124,7 +124,7 @@ public class Board extends JPanel {
         SavedInstance.setPowerUpCloneOf(CurrentInstance.getPowerups());
         SavedInstance.savePlayerInfo(paddle);
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -147,11 +147,11 @@ public class Board extends JPanel {
         }
         else if (VictoryCount <100){
             VictoryCount++;
-            DrawSavedMessage(g2d); 
+            DrawSavedMessage(g2d);
         }
 
         Toolkit.getDefaultToolkit().sync();
-    } 
+    }
 
 
    private void drawStringTopRight(Graphics2D g2d, String message, int height) {
@@ -221,7 +221,7 @@ public class Board extends JPanel {
     private void doGameCycle() {
         moveGameObjects();
         checkCollision();
-        checkifOnlyUnbreakbleBricksLeft();
+        checkOnlyUnbreakableBricksLeft();
         cleanUp();
     }
 
@@ -250,7 +250,7 @@ public class Board extends JPanel {
         inGame = false;
         menuWindow.setVisible(true);
     }
-    
+
   private void checkCollision() {
 	  	checkCollisionBallsDropped();
 	  	checkCollisionMissileBricks();
@@ -259,8 +259,8 @@ public class Board extends JPanel {
         checkCollisionPowerupPaddle();
         checkCollisionBrickMovement();
     }
-  
-    private void checkCollisionPowerupPaddle() { 
+
+    private void checkCollisionPowerupPaddle() {
         for (PowerUp powerup: powerUps) {
             if(powerup.getRect().intersects(paddle.getRect())) {
                 if(powerup.getType().equalsIgnoreCase("moreball")){
@@ -280,7 +280,7 @@ public class Board extends JPanel {
                          }
                     }
                     balls.addAll(newBalls);
-                } 
+                }
                 else if (powerup.getType().equalsIgnoreCase("redball")){
                     for (Ball ball : balls) {
                         ball.ChangeToRedBall();
@@ -299,7 +299,7 @@ public class Board extends JPanel {
         for(int i=0;i<bricks.length;i++){
             for(int j=0;j<bricks.length;j++){
                 if(i!=j){
-                    if(bricks[i].getRect().intersects(bricks[j].getRect()) && !bricks[i].isDestroyed() && !bricks[j].isDestroyed()){  
+                    if(bricks[i].getRect().intersects(bricks[j].getRect()) && !bricks[i].isDestroyed() && !bricks[j].isDestroyed()){
                       if(bricks[j].getRect().getMaxX()>bricks[i].getRect().getMaxX()){
                             bricks[i].ChangeDirection("left");
                             bricks[j].ChangeDirection("right");
@@ -321,7 +321,6 @@ public class Board extends JPanel {
 private void checkCollisionPaddleBall() {
     for (Ball ball : balls) {
         if ((ball.getRect()).intersects(paddle.getRect())) {
-            Random rand = new Random();
             int max = 0;
             int min = 0;
             int paddleLPos = (int) paddle.getRect().getMinX();
@@ -368,7 +367,7 @@ private void checkCollisionPaddleBall() {
             System.out.println("YDIR: " + ball.getYDir() + "/ XDIR: " + ball.getXDir());
         }
     }
-  
+
   }
   private void checkCollisionBallsDropped() {
     for(Ball ball: balls) {
@@ -377,9 +376,9 @@ private void checkCollisionPaddleBall() {
         }
     }
   }
-  private void checkifOnlyUnbreakbleBricksLeft(){
-    boolean NoBricksLeft = true;
-    boolean BreakableBricksLeft = false;
+  private void checkOnlyUnbreakableBricksLeft() {
+      boolean NoBricksLeft = true;
+      boolean BreakableBricksLeft = false;
 
       for (Brick brick : bricks) {
           if (!brick.isDestroyed()) {
@@ -389,33 +388,23 @@ private void checkCollisionPaddleBall() {
                   BreakableBricksLeft = true;
                   break;
               }
-              if(balls.get(0).isRedBall()) {
-                  brick.setBreakable();
-              }
-              else{
-                  brick.returnHPToNormal();
-              }
           }
       }
-
-
-      //if no breakable bricks left then:
-        if(!BreakableBricksLeft){
-            for (Ball ball : balls) {
-                ball.ChangeToRedBall();
-            }
-            for(int k=0;k<Commons.N_OF_BRICKS; k++)
-              bricks[k].setBreakable();
-        }
-        if (NoBricksLeft) { 
-            paddle.setLevel(paddle.getLevel()+1);
-            saved_message = "Victory! Time for Level " + (paddle.getLevel()) + "!";
-            makeNextLevel();
-            VictoryCount=0;
-        }
+      //if no breakable bricks left then
+      if (!BreakableBricksLeft) {
+          for (Ball ball : balls) {
+              ball.ChangeToRedBall();
+          }
+          if (NoBricksLeft) {
+              paddle.setLevel(paddle.getLevel() + 1);
+              saved_message = "Victory! Time for Level " + (paddle.getLevel()) + "!";
+              makeNextLevel();
+              VictoryCount = 0;
+          }
+      }
   }
-
   private void checkCollisionBallBricks() {
+
   	   for (Brick brick: bricks) {
            for (Ball ball : balls) {
                if ((ball.getRect()).intersects(brick.getRect())) {
@@ -441,11 +430,10 @@ private void checkCollisionPaddleBall() {
                        } else if (brick.getRect().contains(pointBottom)) {
                            ball.setYDir(-1 * Math.abs(ball.getYDir()));
                        }
-                       brick.DecreaseHP();
+                       brick.DecreaseHP(ball.isRedBall());
                        brick.updateImage();
 
                        if (brick.isDestroyed()) {
-                           Random rand = new Random();
                            if (rand.nextInt(3) == 1) {
                                powerUps.add(powerUpFactory.getPowerUp(rand.nextInt(8), brick.getX() + brick.getImageWidth() / 2, brick.getY()));
                            }
@@ -460,19 +448,16 @@ private void checkCollisionPaddleBall() {
 		  for (Brick brick: bricks) {
               if (!brick.isDestroyed()) {
 		          if ((missile.getRect()).intersects(brick.getRect())) {
-	                  brick.DecreaseHP();
+	                  brick.DecreaseHP(false);
                       brick.updateImage();
-
 	                  missile.setDestroyed(true);
-
                       if(brick.isDestroyed()) {
-                        Random rand = new Random();
                         powerUps.add(powerUpFactory.getPowerUp(rand.nextInt(8), brick.getX()+ brick.getImageWidth(), brick.getY()));
                     }
 		          }
               }
 		  }
-	  }	
+	  }
   }
 
     void unpauseGame() {
@@ -489,11 +474,11 @@ private void checkCollisionPaddleBall() {
 
             paddle.keyReleased(e);
         }
-      
+
       @Override
         public void keyPressed(KeyEvent e) {
     	  //4
-    	  int key = e.getKeyCode(); 
+    	  int key = e.getKeyCode();
           paddle.keyPressed(e);
         if(inGame) {
             if (key == KeyEvent.VK_ESCAPE) {
@@ -502,10 +487,10 @@ private void checkCollisionPaddleBall() {
                     menuWindow.setVisible(false);
                     unpauseGame();
                 }
-                else { 
-                    menuWindow.setVisible(true); 
+                else {
+                    menuWindow.setVisible(true);
                     pauseGame();
-                    } 
+                    }
                 }
             }
         }

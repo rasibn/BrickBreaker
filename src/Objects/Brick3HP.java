@@ -3,9 +3,8 @@ package Objects;
 public class Brick3HP extends Brick {
     public Brick3HP(int x, int y){
         super(x, y);
-        DefaultHP = 3;
-        HP = DefaultHP;
-        score = DefaultHP*10;
+        HP = 3;
+        score = HP*10;
         this.updateImage();
        }
       @Override

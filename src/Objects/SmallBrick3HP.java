@@ -4,6 +4,7 @@ public class SmallBrick3HP extends Brick {
     public SmallBrick3HP(int x, int y){
         super(x, y);
         HP = 3;
+        score = HP*10;
         this.updateImage();
        }   
     @Override

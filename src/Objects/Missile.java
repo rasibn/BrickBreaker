@@ -3,8 +3,6 @@ package Objects;
 import javax.swing.ImageIcon;
 public class Missile extends Sprite {
 
-	private boolean OutOfBounds;
-    private boolean destroyed;
     public Missile() {
 
         initMissile();
@@ -26,18 +24,7 @@ public class Missile extends Sprite {
         setY(getY() + getYDir());
 
         if (getY() <= 0) {
-           OutOfBounds = true;
+           setDestroyed(true);
         }
     }
-    public void setDestroyed(boolean val) {
-
-        destroyed = val;
-    }
-    public boolean isDestroyed() {
-        return destroyed;
-    }
-
-	public boolean isOutOfBounds() {
-		return OutOfBounds;
-	}
 }

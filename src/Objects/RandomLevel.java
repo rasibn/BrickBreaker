@@ -50,7 +50,7 @@ public class RandomLevel
         }
     	
     }
-    public Brick[] getbricks(){
+    public Brick[] getBricks(){
         return bricks;
     }
 }

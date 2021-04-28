@@ -4,11 +4,11 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 public abstract class Brick extends Sprite implements Cloneable{
-    protected int DefaultHP;
     protected int HP;
     protected int score;
     protected String path;
     protected boolean CanMove;
+    private static boolean onlyUnbreakableBrick=false;
 
     public Brick(int x, int y) {
         initBrick(x, y);
@@ -24,7 +24,13 @@ public abstract class Brick extends Sprite implements Cloneable{
 
         setCanMove(rand.nextInt(5) == 1);
     }
-
+    
+    public static boolean getonlyUnbreakableBrick( ) {
+    	return onlyUnbreakableBrick;
+    }
+    public static void setonlyUnbreakableBrick(boolean b ) {
+    	onlyUnbreakableBrick=b;
+    }
     public void loadImage() {
         var ii = new ImageIcon(path);
         image = ii.getImage();
@@ -34,7 +40,7 @@ public abstract class Brick extends Sprite implements Cloneable{
     public void setCanMove(boolean val){
         CanMove=val;
     }
-    
+
     protected void SetPath(String path){
         this.path = path;
     }
@@ -44,23 +50,18 @@ public abstract class Brick extends Sprite implements Cloneable{
         Player.getPaddleInstance().setScore(Player.getPaddleInstance().getScore()+this.score);
     }
 
-    public void DecreaseHP(){
-        if(HP>0) {
-            HP = HP-1;
+    public void DecreaseHP(boolean shouldBeOneShoot){
+        if(!isDestroyed() && shouldBeOneShoot) {
+            HP=0;
         }
-        if(HP==0 && !isDestroyed()){
-          setDestroyed(true);
+        else{
+            HP--;
+        }
+        if(HP==0){
+            setDestroyed(true);
         }
     }
     public abstract void updateImage();
-    public void setBreakable(){
-        DefaultHP = HP;
-        HP=1;
-    }
-    public void returnHPToNormal(){
-        HP= DefaultHP;
-    }
-
     public void move(){
         if(CanMove){
             setX(getX()+getXDir());

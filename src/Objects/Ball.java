@@ -82,13 +82,16 @@ public class Ball extends Sprite implements Cloneable{
         path = "src/PNG/redball.png";
         loadImage();
     }
+    public void ChangeToNormalBall() {
+        path = "src/PNG/58-Breakout-Tiles.png";
+        loadImage();
+    }
     public boolean isRedBall(){
         return path.equals("src/PNG/redball.png");
     }
 
     @Override
     public Ball clone() throws CloneNotSupportedException {
-        //newBrick.setName(newBrick.getName());
         return (Ball) super.clone();
     }
 }

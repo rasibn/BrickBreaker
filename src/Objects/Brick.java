@@ -20,7 +20,6 @@ public abstract class Brick extends Sprite implements Cloneable{
         CanMove = true;
 
         Random rand = new Random();
-
         setCanMove(rand.nextInt(5) == 1);
     }
 

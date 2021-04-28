@@ -4,7 +4,7 @@ import Main.Commons;
 
 public class RandomLevel 
 {
-	public Brick[] bricks;
+	private Brick[] bricks;
     private int[][] rand = new int[5][6];
     private BrickFactory factory = new BrickFactory();
     

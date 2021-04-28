@@ -459,7 +459,7 @@ private void checkCollisionPaddleBall() {
                       brick.updateImage();
 	                  missile.setDestroyed(true);
                       if(brick.isDestroyed()) {
-                        powerUps.add(powerUpFactory.getPowerUp(rand.nextInt(8), brick.getX()+ brick.getImageWidth(), brick.getY()));
+                        powerUps.add(powerUpFactory.getPowerUp(rand.nextInt(9), brick.getX()+ brick.getImageWidth(), brick.getY()));
                     }
 		          }
               }

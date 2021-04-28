@@ -30,8 +30,7 @@ public class Board extends JPanel {
 	 */
 	@Serial
     private static final long serialVersionUID = 1L;
-	private Timer timer;
-    String saved_message = "Hi. Click NEW GAME or load a SAVED GAME.";
+    String DisplayText = "Hi. Click NEW GAME or load a SAVED GAME.";
     private ArrayList<Ball> balls;
     private ArrayList<PowerUp> powerUps;
     private ArrayList<Missile> missiles;
@@ -39,12 +38,11 @@ public class Board extends JPanel {
     private boolean paused = false;
     private Brick[] bricks;
     boolean inGame = false;
-    private Random rand = new Random();
+    private final Random rand = new Random();
     private JWindow menuWindow;
     private instance CurrentInstance;
     instance SavedInstance;
-    private int VictoryCount = 1000; //high enough so it doesn't print the victory message at the start
-    BrickFactory factory = new BrickFactory();
+    private int InGameTextCount = 1000; //high enough so it doesn't print the victory message at the start
     PowerUpFactory powerUpFactory =  new PowerUpFactory();
     RandomLevel level = new RandomLevel();
 
@@ -71,8 +69,8 @@ public class Board extends JPanel {
         makeNewInstance();
         Menu menu = Menu.getMenu();
         menuWindow = menu.makingTheMenu(this);
-        pauseGame();
-        timer = new Timer(Commons.PERIOD, new GameCycle());
+        stopGame("Welcome!. Choose NEW GAME or load a SAVED GAME");
+        Timer timer = new Timer(Commons.PERIOD, new GameCycle());
         timer.start();
     }
     //Don't use call this function. use makeNewInstance(); or makeNextLevel();
@@ -81,7 +79,7 @@ public class Board extends JPanel {
 
         CurrentInstance.setisEmpty(false);
         balls = CurrentInstance.getBalls();
-        CurrentInstance.bricks = level.getbricks();
+        CurrentInstance.bricks = level.getBricks();
 
         bricks = CurrentInstance.getbricks();
         powerUps = CurrentInstance.getPowerups();
@@ -95,12 +93,13 @@ public class Board extends JPanel {
         paddle.setX(CurrentInstance.getPlayerX());
         paddle.setY(CurrentInstance.getPlayerY());
      }
-
+    //Generates the same with no previous data
     void makeNewInstance() {
         makeGameInstance();
         paddle.initState();
     }
-    private void makeNextLevel() { //don't init the paddle here
+    //Makes the next Level
+    private void makeNextLevel() {
         makeGameInstance();
         paddle.setBallStuckToPaddle(true);
     }
@@ -141,12 +140,11 @@ public class Board extends JPanel {
             drawStringTopRight(g2d, "Level: " +paddle.getLevel(), 18);
             drawStringTopRight(g2d, "Score: " +paddle.getScore(), 36);
         }
-
         if(paused) {
             DrawSavedMessage(g2d);
         }
-        else if (VictoryCount <100){
-            VictoryCount++;
+        if (InGameTextCount <100){
+            InGameTextCount++;
             DrawSavedMessage(g2d);
         }
 
@@ -186,7 +184,7 @@ public class Board extends JPanel {
         FontMetrics fontMetrics = this.getFontMetrics(font);
         g2d.setColor(Color.BLACK);
         g2d.setFont(font);
-        g2d.drawString(saved_message,(Commons.WIDTH - fontMetrics.stringWidth(saved_message)) / 2, 20);
+        g2d.drawString(DisplayText,(Commons.WIDTH - fontMetrics.stringWidth(DisplayText)) / 2, 20);
     }
 
     private class GameCycle implements ActionListener {
@@ -240,15 +238,22 @@ public class Board extends JPanel {
             paddle.setBallStuckToPaddle(true);
 
             if(paddle.getLife()<1) {
-                stopGame();
+                stopGame("Game Over. Try NEW GAME or LOAD SAVE.");
             }
         }
     }
 
-    private void stopGame() {
-        saved_message = "Game Over. Try Again. Choose NEW GAME or load a SAVED GAME";
+    public void stopGame(String DisplayText) {
+        this.DisplayText = DisplayText;
         inGame = false;
+        paused = true;
         menuWindow.setVisible(true);
+    }
+    public void startGame(String DisplayText) {
+        this.DisplayText = DisplayText;
+        inGame = true;
+        paused =false;
+        menuWindow.setVisible(false);
     }
 
   private void checkCollision() {
@@ -376,7 +381,8 @@ private void checkCollisionPaddleBall() {
         }
     }
   }
-  private void checkOnlyUnbreakableBricksLeft() {
+
+  private void checkOnlyUnbreakableBricksLeft() { //Checks for no breakable breaks left, and if we should move on to the next level.
       boolean NoBricksLeft = true;
       boolean BreakableBricksLeft = false;
 
@@ -397,12 +403,13 @@ private void checkCollisionPaddleBall() {
           }
           if (NoBricksLeft) {
               paddle.setLevel(paddle.getLevel() + 1);
-              saved_message = "Victory! Time for Level " + (paddle.getLevel()) + "!";
+              DisplayText = "Victory! Time for Level " + (paddle.getLevel()) + "!";
               makeNextLevel();
-              VictoryCount = 0;
+              InGameTextCount = 0;
           }
       }
   }
+
   private void checkCollisionBallBricks() {
 
   	   for (Brick brick: bricks) {
@@ -460,14 +467,6 @@ private void checkCollisionPaddleBall() {
 	  }
   }
 
-    void unpauseGame() {
-        paused = false;
-    }
-
-    private void pauseGame() {
-        paused = true;
-    }
-
   private class TAdapter extends KeyAdapter {
         @Override
         public void keyReleased(KeyEvent e) {
@@ -482,14 +481,12 @@ private void checkCollisionPaddleBall() {
           paddle.keyPressed(e);
         if(inGame) {
             if (key == KeyEvent.VK_ESCAPE) {
-                saved_message = "Press NEW GAME to start over, or LOAD SAVE to load a saved game";
-                if(paused) {
-                    menuWindow.setVisible(false);
-                    unpauseGame();
-                }
-                else {
-                    menuWindow.setVisible(true);
-                    pauseGame();
+                    try {
+                        saveTheGame();
+                        startGame("Game File Saved successfully. The game will Continue.");
+                        InGameTextCount = 0;
+                    } catch (CloneNotSupportedException cloneNotSupportedException) {
+                        cloneNotSupportedException.printStackTrace();
                     }
                 }
             }

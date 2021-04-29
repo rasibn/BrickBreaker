@@ -8,6 +8,8 @@ public abstract class Brick extends Sprite implements Cloneable{
     protected int score;
     protected String path;
     protected boolean CanMove;
+    private static boolean OnlyUnbreakableBricksLeft;
+    private static boolean NoBricksLeft;
 
     public Brick(int x, int y) {
         initBrick(x, y);
@@ -20,9 +22,22 @@ public abstract class Brick extends Sprite implements Cloneable{
         CanMove = true;
 
         Random rand = new Random();
+
         setCanMove(rand.nextInt(5) == 1);
     }
-
+    
+    public static boolean isOnlyUnbreakableBricksLeft() {
+    	return OnlyUnbreakableBricksLeft;
+    }
+    public static void setOnlyUnbreakableBricksLeft(boolean b) {
+    	OnlyUnbreakableBricksLeft=b;
+    }
+    public static boolean isNoBricksLeft() {
+    	return NoBricksLeft;
+    }
+    public static void setNoBricksLeft(boolean b) {
+    	NoBricksLeft=b;
+    }
     public void loadImage() {
         var ii = new ImageIcon(path);
         image = ii.getImage();

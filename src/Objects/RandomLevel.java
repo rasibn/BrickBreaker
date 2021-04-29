@@ -4,7 +4,7 @@ import Main.Commons;
 
 public class RandomLevel 
 {
-	public Brick[] bricks;
+	private Brick[] bricks;
     private int[][] rand = new int[5][6];
     private BrickFactory factory = new BrickFactory();
     
@@ -21,6 +21,7 @@ public class RandomLevel
 
             for (int j = 0; j < 6; j++) {
             	rand[i][j] = ((int)(Math.random()*7)) + 1;
+            	
             	//following code removes possibility of deadlock
             	if (i > 0)  
 	            {

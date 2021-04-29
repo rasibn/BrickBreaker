@@ -162,7 +162,7 @@ public class Board extends JPanel {
    private void drawStringTopRight(Graphics2D g2d, String message, int height) {
         var font = new Font("Verdana", Font.BOLD, 15);
         FontMetrics fontMetrics = this.getFontMetrics(font);
-        g2d.setColor(Color.RED);
+        g2d.setColor(Color.WHITE);
         g2d.setFont(font);
         g2d.drawString(message, Commons.WIDTH - fontMetrics.stringWidth(message) - 2, height);
     }
@@ -189,7 +189,7 @@ public class Board extends JPanel {
 
         var font = new Font("Verdana", Font.BOLD, 18);
         FontMetrics fontMetrics = this.getFontMetrics(font);
-        g2d.setColor(Color.BLACK);
+        g2d.setColor(Color.WHITE);
         g2d.setFont(font);
         g2d.drawString(DisplayText,(Commons.WIDTH - fontMetrics.stringWidth(DisplayText)) / 2, 20);
     }

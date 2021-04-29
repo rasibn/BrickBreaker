@@ -1,4 +1,5 @@
-package Main;
+package  Main;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import java.awt.EventQueue;
 
@@ -9,7 +10,7 @@ public class Application extends JFrame {
         initUI();
     }
     private void initUI() {
-        add(new Board());
+        add(new Board("src//PNG//background.jpeg"));
         setTitle("Breakout");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);

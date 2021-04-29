@@ -21,6 +21,7 @@ public class RandomLevel
 
             for (int j = 0; j < 6; j++) {
             	rand[i][j] = ((int)(Math.random()*7)) + 1;
+            	
             	//following code removes possibility of deadlock
             	if (i > 0)  
 	            {

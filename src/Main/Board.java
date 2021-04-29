@@ -1,5 +1,6 @@
 package Main;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JWindow;
 import javax.swing.Timer;
@@ -12,6 +13,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
@@ -46,14 +48,16 @@ public class Board extends JPanel {
     PowerUpFactory powerUpFactory =  new PowerUpFactory();
     RandomLevel level = new RandomLevel();
     private int powerCount =0;
+    private Image img;
     
-    public Board() {
-
-        initBoard();
+    public Board(String img) {
+		initBoard(new ImageIcon(img).getImage());
     }
 
-    private void initBoard() {
-        addKeyListener(new TAdapter());
+    private void initBoard(Image img)  
+    {
+    	this.img = img;
+    	addKeyListener(new TAdapter());
         setFocusable(true);
         setPreferredSize(new Dimension(Commons.WIDTH, Commons.HEIGHT));
         setBackground(Color.WHITE);
@@ -103,6 +107,8 @@ public class Board extends JPanel {
     private void makeNextLevel() {
         makeGameInstance();
         paddle.setBallStuckToPaddle(true);
+        paddle.setPowerUp("Default");
+        powerUps.clear();
     }
     void getsavedInstance() throws CloneNotSupportedException {
         CurrentInstance = new instance();
@@ -128,7 +134,7 @@ public class Board extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        g.drawImage(img, 0, 0, null);
         var g2d = (Graphics2D) g;
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

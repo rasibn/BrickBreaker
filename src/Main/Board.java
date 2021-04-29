@@ -1,5 +1,6 @@
-  package Main;
+package Main;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JWindow;
 import javax.swing.Timer;
@@ -12,6 +13,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
@@ -46,14 +48,16 @@ public class Board extends JPanel {
     PowerUpFactory powerUpFactory =  new PowerUpFactory();
     RandomLevel level = new RandomLevel();
     private int powerCount =0;
+    private Image img;
     
-    public Board() {
-
-        initBoard();
+    public Board(String img) {
+		initBoard(new ImageIcon(img).getImage());
     }
 
-    private void initBoard() {
-        addKeyListener(new TAdapter());
+    private void initBoard(Image img)  
+    {
+    	this.img = img;
+    	addKeyListener(new TAdapter());
         setFocusable(true);
         setPreferredSize(new Dimension(Commons.WIDTH, Commons.HEIGHT));
         setBackground(Color.WHITE);
@@ -87,7 +91,7 @@ public class Board extends JPanel {
         missiles = paddle.getMissiles();
 
         balls.add(new Ball());
-
+    
         level.Generate();
         System.out.println("Current Life: " +paddle.getLife());
 
@@ -97,14 +101,14 @@ public class Board extends JPanel {
     //Generates the same with no previous data
     void makeNewInstance() {
         makeGameInstance();
-        paddle.initState();
-        
+        paddle.initState();   
     }
     //Makes the next Level
     private void makeNextLevel() {
         makeGameInstance();
         paddle.setBallStuckToPaddle(true);
-        Brick.setonlyUnbreakableBrick(false);
+        paddle.setPowerUp("Default");
+        powerUps.clear();
     }
     void getsavedInstance() throws CloneNotSupportedException {
         CurrentInstance = new instance();
@@ -130,7 +134,7 @@ public class Board extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        g.drawImage(img, 0, 0, null);
         var g2d = (Graphics2D) g;
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -224,7 +228,6 @@ public class Board extends JPanel {
         checkCollision();
         checkOnlyUnbreakableBricksLeft();
         cleanUp();
-        
     }
 
     private void cleanUp() {
@@ -245,10 +248,10 @@ public class Board extends JPanel {
                 stopGame("Game Over. Try NEW GAME or LOAD SAVE.");
             }
         }
-        if(powerCount>500 && Brick.getonlyUnbreakableBrick()==false)
+        if(powerCount>500 && !Brick.isOnlyUnbreakableBricksLeft()) //To return powerup to normal
         {
-        	for(int i=0; i<balls.size();i++) {
-                balls.get(i).ChangeToNormalBall();
+        	for(Ball ball: balls){
+                ball.ChangeToNormalBall();
         	}
         }
         if(powerCount>500) {
@@ -398,36 +401,31 @@ private void checkCollisionPaddleBall() {
   }
 
   private void checkOnlyUnbreakableBricksLeft() { //Checks for no breakable breaks left, and if we should move on to the next level.
-      boolean NoBricksLeft = true;
-      boolean BreakableBricksLeft = false;
-      boolean onlyUnbreakableBricksLeft=true;
+    Brick.setNoBricksLeft(true);
+    Brick.setOnlyUnbreakableBricksLeft(true);
 
-      for (Brick brick : bricks) {
-          if (!brick.isDestroyed()) {
-              NoBricksLeft = false;
-
-              if (!(brick instanceof BrickNotBreakable)) {
-                  BreakableBricksLeft = true;
-                  onlyUnbreakableBricksLeft=false;
+    for (Brick brick : bricks) {
+          if (!brick.isDestroyed()) { // if a brick isn't destroyed and it is not unbreakable, then only unbreakablebrick left is false.
+            Brick.setNoBricksLeft(false);
+            if (!(brick instanceof BrickNotBreakable)) {
+                  Brick.setOnlyUnbreakableBricksLeft(false);
                   break;
               }
           }
       }
-      if(onlyUnbreakableBricksLeft) {
-    	  Brick.setonlyUnbreakableBrick(true);
-      }
-      //if no breakable bricks left then
-      if (!BreakableBricksLeft) {
+      //if no breakable bricks left then change balls to red
+      if (Brick.isOnlyUnbreakableBricksLeft()) {
           for (Ball ball : balls) {
               ball.ChangeToRedBall();
-          }
-          if (NoBricksLeft) {
-              paddle.setLevel(paddle.getLevel() + 1);
-              DisplayText = "Victory! Time for Level " + (paddle.getLevel()) + "!";
-              makeNextLevel();
-              InGameTextCount = 0;
-          }
+          }    
       }
+    //if no bricks left then make new level
+      if (Brick.isNoBricksLeft()) {
+        paddle.setLevel(paddle.getLevel() + 1);
+        DisplayText = "Victory! Time for Level " + (paddle.getLevel()) + "!";
+        makeNextLevel();
+        InGameTextCount = 0;
+    }
   }
 
   private void checkCollisionBallBricks() {
@@ -479,7 +477,7 @@ private void checkCollisionPaddleBall() {
                       brick.updateImage();
 	                  missile.setDestroyed(true);
                       if(brick.isDestroyed()) {
-                        powerUps.add(powerUpFactory.getPowerUp(rand.nextInt(8), brick.getX()+ brick.getImageWidth(), brick.getY()));
+                        powerUps.add(powerUpFactory.getPowerUp(rand.nextInt(9), brick.getX()+ brick.getImageWidth(), brick.getY()));
                     }
 		          }
               }

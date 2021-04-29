@@ -45,7 +45,8 @@ public class Board extends JPanel {
     private int InGameTextCount = 1000; //high enough so it doesn't print the victory message at the start
     PowerUpFactory powerUpFactory =  new PowerUpFactory();
     RandomLevel level = new RandomLevel();
-
+    private int powerCount =0;
+    
     public Board() {
 
         initBoard();
@@ -86,7 +87,7 @@ public class Board extends JPanel {
         missiles = paddle.getMissiles();
 
         balls.add(new Ball());
-
+    
         level.Generate();
         System.out.println("Current Life: " +paddle.getLife());
 
@@ -96,7 +97,7 @@ public class Board extends JPanel {
     //Generates the same with no previous data
     void makeNewInstance() {
         makeGameInstance();
-        paddle.initState();
+        paddle.initState();   
     }
     //Makes the next Level
     private void makeNextLevel() {
@@ -241,6 +242,16 @@ public class Board extends JPanel {
                 stopGame("Game Over. Try NEW GAME or LOAD SAVE.");
             }
         }
+        if(powerCount>500 && !Brick.isOnlyUnbreakableBricksLeft()) //To return powerup to normal
+        {
+        	for(Ball ball: balls){
+                ball.ChangeToNormalBall();
+        	}
+        }
+        if(powerCount>500) {
+        	paddle.setPowerUp("default");
+        }
+        powerCount++;
     }
 
     public void stopGame(String DisplayText) {
@@ -268,6 +279,7 @@ public class Board extends JPanel {
     private void checkCollisionPowerupPaddle() {
         for (PowerUp powerup: powerUps) {
             if(powerup.getRect().intersects(paddle.getRect())) {
+            	powerCount=0;
                 if(powerup.getType().equalsIgnoreCase("moreball")){
                     ArrayList<Ball> newBalls = new ArrayList<>();
                     for(Ball ball: balls) {
@@ -383,31 +395,31 @@ private void checkCollisionPaddleBall() {
   }
 
   private void checkOnlyUnbreakableBricksLeft() { //Checks for no breakable breaks left, and if we should move on to the next level.
-      boolean NoBricksLeft = true;
-      boolean BreakableBricksLeft = false;
+    Brick.setNoBricksLeft(true);
+    Brick.setOnlyUnbreakableBricksLeft(true);
 
-      for (Brick brick : bricks) {
-          if (!brick.isDestroyed()) {
-              NoBricksLeft = false;
-
-              if (!(brick instanceof BrickNotBreakable)) {
-                  BreakableBricksLeft = true;
+    for (Brick brick : bricks) {
+          if (!brick.isDestroyed()) { // if a brick isn't destroyed and it is not unbreakable, then only unbreakablebrick left is false.
+            Brick.setNoBricksLeft(false);
+            if (!(brick instanceof BrickNotBreakable)) {
+                  Brick.setOnlyUnbreakableBricksLeft(false);
                   break;
               }
           }
       }
-      //if no breakable bricks left then
-      if (!BreakableBricksLeft) {
+      //if no breakable bricks left then change balls to red
+      if (Brick.isOnlyUnbreakableBricksLeft()) {
           for (Ball ball : balls) {
               ball.ChangeToRedBall();
-          }
-          if (NoBricksLeft) {
-              paddle.setLevel(paddle.getLevel() + 1);
-              DisplayText = "Victory! Time for Level " + (paddle.getLevel()) + "!";
-              makeNextLevel();
-              InGameTextCount = 0;
-          }
+          }    
       }
+    //if no bricks left then make new level
+      if (Brick.isNoBricksLeft()) {
+        paddle.setLevel(paddle.getLevel() + 1);
+        DisplayText = "Victory! Time for Level " + (paddle.getLevel()) + "!";
+        makeNextLevel();
+        InGameTextCount = 0;
+    }
   }
 
   private void checkCollisionBallBricks() {
@@ -483,7 +495,7 @@ private void checkCollisionPaddleBall() {
             if (key == KeyEvent.VK_ESCAPE) {
                     try {
                         saveTheGame();
-                        startGame("Game File Saved successfully. The game will Continue.");
+                        stopGame("Game File Saved successfully.");
                         InGameTextCount = 0;
                     } catch (CloneNotSupportedException cloneNotSupportedException) {
                         cloneNotSupportedException.printStackTrace();

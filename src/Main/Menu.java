@@ -34,11 +34,6 @@ public class Menu {
         
         topPanel.add(nameLabel);
         
-        //ingame buttons
-        //JButton resumeButton = new JButton("RESUME [ECS]");
-        //resumeButton.setFont(new Font("RESUME [ECS]", Font.BOLD, 14));
-        //JButton saveButton = new JButton("SAVE GAME");
-        //saveButton.setFont(new Font("Ariel", Font.BOLD, 14));
         JButton loadSaveButton = new JButton("LOAD SAVE");
         loadSaveButton.setFont(new Font("Ariel", Font.BOLD, 14));
         JButton newgameButton = new JButton("NEW GAME");
@@ -46,15 +41,10 @@ public class Menu {
         JButton exitButton = new JButton("EXIT");
         exitButton.setFont(new Font("Ariel", Font.BOLD, 14));
     
-        //middlePanel.add(BorderLayout.CENTER, resumeButton);
-        middlePanel.add(BorderLayout.CENTER, loadSaveButton);
-        //middlePanel.add(BorderLayout.CENTER, saveButton);
-    
+        middlePanel.add(BorderLayout.CENTER, loadSaveButton);    
         middlePanel.add(BorderLayout.CENTER, newgameButton);
         middlePanel.add(BorderLayout.CENTER, exitButton);
     
-        //resumeButton.setVisible(false);
-        //saveButton.setVisible(false);
     
         menuWindow.add(BorderLayout.NORTH, topPanel);
         menuWindow.add(BorderLayout.CENTER, middlePanel);

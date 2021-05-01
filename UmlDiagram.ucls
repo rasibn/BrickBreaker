@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" automaticImage="JPEG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="Objects.Brick2HP" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/Brick2HP.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="118" x="531" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="Objects.PowerUpIncSpeed" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/PowerUpIncSpeed.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="129" x="1888" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="Objects.Brick1HP" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/Brick1HP.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="118" x="39" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="Objects.SmallBrick1HP" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/SmallBrick1HP.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="127" x="-286" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="Objects.Brick3HP" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/Brick3HP.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="118" x="-119" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="Objects.PowerUpExtraLife" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/PowerUpExtraLife.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="127" x="1721" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="Main.Application" project="MASTERproject" 
+    file="/MASTERproject/src/Main/Application.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="113" x="1083" y="215"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="Main.Board.GameCycle" project="MASTERproject" 
+    file="/MASTERproject/src/Main/Board.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="194" x="390" y="1115"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="Objects.PowerUpMoreBalls" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/PowerUpMoreBalls.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="133" x="2391" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="Objects.PowerUpdecSpeed" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/PowerUpdecSpeed.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="133" x="2218" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="Objects.Missile" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/Missile.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="105" x="857" y="3445"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="Objects.PowerUpdecSize" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/PowerUpdecSize.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="121" x="2057" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="Objects.PowerUp" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/PowerUp.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="132" x="1547" y="2059"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="Objects.PowerUpFactory" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/PowerUpFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="181" x="1721" y="1290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="Objects.SmallBrick2HP" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/SmallBrick2HP.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="127" x="364" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="Main.Menu" project="MASTERproject" file="/MASTERproject/src/Main/Menu.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="233" x="1454" y="215"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="Objects.SmallBrick3HP" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/SmallBrick3HP.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="127" x="197" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="18" language="java" name="Main.Commons" project="MASTERproject" 
+    file="/MASTERproject/src/Main/Commons.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="181" x="1230" y="3445"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="19" language="java" name="Objects.PowerUpRedBall" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/PowerUpRedBall.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="119" x="2564" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="Main.Board.TAdapter" project="MASTERproject" 
+    file="/MASTERproject/src/Main/Board.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="165" x="897" y="1115"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="Objects.Ball" project="MASTERproject" file="/MASTERproject/src/Objects/Ball.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="155" x="1013" y="2059"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="Objects.PowerUpIncSize" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/PowerUpIncSize.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="117" x="1250" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="Objects.Player" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/Player.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="855" width="219" x="939" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="Objects.Sprite" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/Sprite.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="603" width="167" x="958" y="1290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="Main.Board" project="MASTERproject" file="/MASTERproject/src/Main/Board.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="675" width="350" x="1083" y="400"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="Behaviour.Animation" project="MASTERproject" 
+    file="/MASTERproject/src/Behaviour/Animation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="188" x="1002" y="3445"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="Objects.BrickFactory" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/BrickFactory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="139" x="310" y="1290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="Main.instance" project="MASTERproject" 
+    file="/MASTERproject/src/Main/instance.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="729" width="258" x="1189" y="1290"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="Objects.BrickNotBreakable" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/BrickNotBreakable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="147" x="689" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="Objects.RandomLevel" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/RandomLevel.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="149" x="624" y="1115"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="Objects.PowerUpFire" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/PowerUpFire.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="97" x="1407" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="Objects.PowerUpDefault" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/PowerUpDefault.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="116" x="1565" y="2540"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="Objects.Brick" project="MASTERproject" 
+    file="/MASTERproject/src/Objects/Brick.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="441" width="241" x="427" y="2059"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <dependency id="35">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="33"/>  
+  </dependency>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <nesting id="38">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="20"/>  
+  </nesting>  
+  <association id="39">    
+    <bendpoint x="866" y="1115"/>    
+    <bendpoint x="866" y="1290"/>    
+    <bendpoint x="866" y="2059"/>    
+    <bendpoint x="866" y="2540"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="40" name="missiles"/>      
+      <multiplicity id="41" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="42">    
+    <bendpoint x="698" y="2059"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="29"/>  
+  </dependency>  
+  <generalization id="43">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <dependency id="44">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <association id="45">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="46" name="balls"/>      
+      <multiplicity id="47" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="48">    
+    <bendpoint x="1155" y="1115"/>    
+    <bendpoint x="1155" y="1290"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="49" name="balls"/>      
+      <multiplicity id="50" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="51">    
+    <bendpoint x="1534" y="2540"/>    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="52">    
+    <bendpoint x="2713" y="1115"/>    
+    <bendpoint x="2713" y="1290"/>    
+    <bendpoint x="2713" y="2059"/>    
+    <bendpoint x="2713" y="2540"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="53">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="54" name="menu"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="57" name="bricks"/>      
+      <multiplicity id="58" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="59">    
+    <bendpoint x="21" y="2059"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="60">    
+    <bendpoint x="1092" y="1115"/>    
+    <bendpoint x="927" y="1290"/>    
+    <bendpoint x="927" y="2059"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="61" name="paddle"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="63">    
+    <bendpoint x="1176" y="1115"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="64" name="CurrentInstance"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="66">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="25"/>  
+  </dependency>  
+  <generalization id="67">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <dependency id="68">    
+    <bendpoint x="1198" y="2540"/>    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="69">    
+    <bendpoint x="534" y="1290"/>    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="70" name="bricks"/>      
+      <multiplicity id="71" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="72">    
+    <bendpoint x="1730" y="2059"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <generalization id="73">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <association id="74">    
+    <bendpoint x="1197" y="1115"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="75" name="SavedInstance"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="77">    
+    <bendpoint x="1219" y="2059"/>    
+    <bendpoint x="1219" y="2540"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="78">    
+    <bendpoint x="2151" y="2059"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <generalization id="79">    
+    <bendpoint x="969" y="2059"/>    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <dependency id="80">    
+    <bendpoint x="906" y="1290"/>    
+    <bendpoint x="906" y="2059"/>    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <generalization id="81">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <dependency id="82">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="25"/>  
+  </dependency>  
+  <generalization id="83">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <dependency id="84">    
+    <bendpoint x="1516" y="2059"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="31"/>  
+  </dependency>  
+  <nesting id="85">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="8"/>  
+  </nesting>  
+  <dependency id="86">    
+    <bendpoint x="824" y="1290"/>    
+    <bendpoint x="824" y="2059"/>    
+    <bendpoint x="887" y="2540"/>    
+    <end type="SOURCE" refId="30"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="87">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="88" name="Missiles"/>      
+      <multiplicity id="89" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="90">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="91" name="factory"/>      
+      <multiplicity id="92" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="93">    
+    <bendpoint x="908" y="2540"/>    
+    <bendpoint x="948" y="2059"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <dependency id="94">    
+    <bendpoint x="263" y="2059"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <association id="95">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="96" name="animation"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="98">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <dependency id="99">    
+    <bendpoint x="845" y="1115"/>    
+    <bendpoint x="845" y="1290"/>    
+    <bendpoint x="845" y="2059"/>    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="29"/>  
+  </dependency>  
+  <generalization id="100">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <dependency id="101">    
+    <bendpoint x="1709" y="2059"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="32"/>  
+  </dependency>  
+  <generalization id="102">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <dependency id="103">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <generalization id="104">    
+    <end type="SOURCE" refId="31"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <dependency id="105">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <generalization id="106">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <dependency id="107">    
+    <bendpoint x="105" y="2059"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="108">    
+    <bendpoint x="1979" y="2059"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <generalization id="109">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <association id="110">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="111" name="paddle"/>      
+      <multiplicity id="112" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="113">    
+    <bendpoint x="1814" y="2059"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="114">    
+    <bendpoint x="2065" y="2059"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <generalization id="115">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <dependency id="116">    
+    <bendpoint x="184" y="2059"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="117">    
+    <bendpoint x="1898" y="2059"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <generalization id="118">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <generalization id="119">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <association id="120">    
+    <bendpoint x="1484" y="1115"/>    
+    <bendpoint x="1484" y="1290"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="121" name="powerUps"/>      
+      <multiplicity id="122" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="123">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="124" name="powerups"/>      
+      <multiplicity id="125" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="126">    
+    <bendpoint x="1505" y="1115"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="127" name="powerUpFactory"/>      
+      <multiplicity id="128" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="129">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="130" name="level"/>      
+      <multiplicity id="131" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="132">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="33"/>  
+  </generalization>  
+  <dependency id="133">    
+    <bendpoint x="1494" y="2059"/>    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <generalization id="134">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="13"/>  
+  </generalization>  
+  <dependency id="135">    
+    <bendpoint x="396" y="2059"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="136">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="137">    
+    <bendpoint x="346" y="2059"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <association id="138">    
+    <bendpoint x="803" y="1115"/>    
+    <bendpoint x="803" y="1290"/>    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="139" name="bricks"/>      
+      <multiplicity id="140" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="141">    
+    <bendpoint x="1463" y="400"/>    
+    <bendpoint x="1463" y="1115"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="142">    
+    <bendpoint x="1198" y="2059"/>    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

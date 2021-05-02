@@ -8,21 +8,20 @@ public abstract class Brick extends Sprite implements Cloneable{
     protected int score;
     protected String path;
     protected boolean CanMove;
-    private static boolean OnlyUnbreakableBricksLeft;
-    private static boolean NoBricksLeft;
+    private static boolean OnlyUnbreakableBricksLeft; //no breakable bricks left
+    private static boolean NoBricksLeft;// no breaks left
 
     public Brick(int x, int y) {
         initBrick(x, y);
     }
 
-    private void initBrick(int x, int y) {
+    private void initBrick(int x, int y) { //initialize brick as either movable or unmovable
     	setX(x);
     	setY(y);
         setXDir(2);
         CanMove = true;
 
         Random rand = new Random();
-
         setCanMove(rand.nextInt(5) == 1);
     }
     
@@ -74,6 +73,7 @@ public abstract class Brick extends Sprite implements Cloneable{
             setX(getX()+getXDir());
         }
     }
+    //Change the direction of the bricks after collision
     public void ChangeDirection(String direction){
         if(direction.equalsIgnoreCase("left"))    
             setXDir(-1*Math.abs(getXDir()));

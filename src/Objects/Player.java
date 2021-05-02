@@ -5,11 +5,11 @@ import Behaviour.Animation;
 import Main.Commons;
 
 public class Player extends Sprite{
-
+	//This animation object is an abstraction to make it easier to animation different objects in the game.
 	private Animation animation;
 
 	private static Player paddle;
-	private ArrayList<Missile> Missiles;	
+	private ArrayList<Missile> Missiles;
 	private final int defaultSpeed = 6;
 
 	private int PlayerLife;
@@ -71,7 +71,7 @@ public class Player extends Sprite{
 		Missiles.add(missile2);
 	}
 
-	
+	//Functions to add the images, if an animation need to be changed then we will edit these functions
 	private void setImagesDefault() {
 		animation.clearImagesFromCycle();
 		animation.addToAnimationCycle("src/PNG/50-Breakout-Tiles.png");
@@ -96,6 +96,7 @@ public class Player extends Sprite{
 		animation.addToAnimationCycle("src/PNG/57-Breakout-Tiles.png");
 	
 	}
+	//This function setPowerUp serves as an interface for selecting the powerups.
 	public void setPowerUp(String powerUpName) {
 		playerPowerUpAbility = powerUpName;
 		switch (powerUpName) {
@@ -131,6 +132,7 @@ public class Player extends Sprite{
 			}
 		}
 	}
+	//The following are the powerup projectile collision specific functions, they will be accessed using the above function as a interface.
 	private void powerUpFire() {
 		speed = defaultSpeed;
 		setImageFire();
@@ -211,9 +213,6 @@ public class Player extends Sprite{
 		
 		if (key == KeyEvent.VK_LEFT) {setXDir(0);}
 	    if (key == KeyEvent.VK_RIGHT) {setXDir(0);}
-	}
-	public void gainALife() {
-		PlayerLife++;
 	}
 	public void loseALife() {
 		PlayerLife--;

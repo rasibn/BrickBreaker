@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 public class Animation {
-	private ArrayList<String> ImagesPaths;
+	private final ArrayList<String> ImagesPaths;
 	private int count;
 	private int CurrentImageNum = 0;
 	

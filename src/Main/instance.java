@@ -6,9 +6,13 @@ import Objects.PowerUp;
 
 import java.util.ArrayList;
 
+/*
+This class' job is to serve as a abstraction to hold all the game state related information for the board to then draw.
+There will be an instance of this class in board which should be the current instance being drawn, while the rest of the instances should represent save files.
+ */
 public class instance {
-    private ArrayList<Ball> balls;
-    private ArrayList<PowerUp> powerups;
+    private final ArrayList<Ball> balls;
+    private final ArrayList<PowerUp> powerups;
     public Brick[] bricks;
     private int score;
     private int level;
@@ -113,6 +117,7 @@ public class instance {
     public ArrayList<PowerUp> getPowerups() {
         return powerups;
     }
+    //The player is a singleton clss so we will just save and load the specifics of the state of the player object, rather than creating a new player object.
     public void savePlayerInfo(Player paddle) {
         this.setPlayerX(paddle.getX());
         this.setPlayerY(paddle.getY());

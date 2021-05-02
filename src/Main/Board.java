@@ -78,7 +78,7 @@ public class Board extends JPanel {
         Timer timer = new Timer(Commons.PERIOD, new GameCycle());
         timer.start();
     }
-    //Don't use call this function. use makeNewInstance(); or makeNextLevel();
+    //Don't use call this function directly. use makeNewInstance() or makeNextLevel(). Both use this function in their body
     private void makeGameInstance() {
         CurrentInstance = new instance();
 
@@ -99,17 +99,18 @@ public class Board extends JPanel {
         paddle.setY(CurrentInstance.getPlayerY());
      }
     //Generates the same with no previous data
-    void makeNewInstance() {
+    public void makeNewInstance() {
         makeGameInstance();
         paddle.initState();   
     }
     //Makes the next Level
-    private void makeNextLevel() {
+    public void makeNextLevel() {
         makeGameInstance();
         paddle.setBallStuckToPaddle(true);
         paddle.setPowerUp("Default");
         powerUps.clear();
     }
+    //Transfers information from the saved instance variable to the current instance variable
     void getsavedInstance() throws CloneNotSupportedException {
         CurrentInstance = new instance();
 
@@ -122,6 +123,7 @@ public class Board extends JPanel {
         powerUps = CurrentInstance.getPowerups();
         SavedInstance.getPlayerinfo(paddle);
     }
+    //Copies the information from the current instance variable to the saved instance variable
     void saveTheGame() throws CloneNotSupportedException{
         SavedInstance = new instance();
         SavedInstance.setisEmpty(false);
@@ -158,7 +160,7 @@ public class Board extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
-
+    //A general message function that will be used to continouesly draw and update the life, score etc on the top right
    private void drawStringTopRight(Graphics2D g2d, String message, int height) {
         var font = new Font("Verdana", Font.BOLD, 15);
         FontMetrics fontMetrics = this.getFontMetrics(font);
@@ -185,6 +187,7 @@ public class Board extends JPanel {
             }
         }
     }
+    //Draws the messages that will be displayed due to user action events by menu button, or when the user progresses to the next level
     private void DrawSavedMessage(Graphics2D g2d) {
 
         var font = new Font("Verdana", Font.BOLD, 18);
@@ -229,7 +232,7 @@ public class Board extends JPanel {
         checkOnlyUnbreakableBricksLeft();
         cleanUp();
     }
-
+    //Clean Up all the game object that are not destroyed and don't need to be called again.
     private void cleanUp() {
         balls.removeIf(Sprite::isDestroyed);
         powerUps.removeIf(Sprite::isDestroyed);
@@ -259,13 +262,15 @@ public class Board extends JPanel {
         }
         powerCount++;
     }
-
+    //This callback represents the variable setting when the game is temporarily stopped
     public void stopGame(String DisplayText) {
         this.DisplayText = DisplayText;
         inGame = false;
         paused = true;
         menuWindow.setVisible(true);
     }
+    //This callback represents the variable setting when the game is un paused
+
     public void startGame(String DisplayText) {
         this.DisplayText = DisplayText;
         inGame = true;
@@ -273,8 +278,9 @@ public class Board extends JPanel {
         menuWindow.setVisible(false);
     }
 
-  private void checkCollision() {
-	  	checkCollisionBallsDropped();
+  private void checkCollision() {        //Each method in the body checks a collision between any two objects as the name of the nested functions suggest.
+
+      checkCollisionBallsDropped();
 	  	checkCollisionMissileBricks();
         checkCollisionPaddleBall();
         checkCollisionBallBricks();

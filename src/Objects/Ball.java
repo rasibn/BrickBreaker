@@ -22,7 +22,7 @@ public class Ball extends Sprite implements Cloneable{
         setPath("src/PNG/58-Breakout-Tiles.png");
         loadImage();
     }
-    
+    //This function uses the Math.Random() function to set a specific degree value of the launch of the ball, making the launch as the name suggests, random.
     public void ballLaunchRandom() {
         Random rand = new Random();
         double degreevalue =rand.nextInt(30);        
@@ -47,7 +47,7 @@ public class Ball extends Sprite implements Cloneable{
     public void powerUpCloneBall() {
     	//Will make this later.
     }
-
+    //Updates the position of the ball, and uses conditional logic to change direction upon collision with the game boundaries.
     @Override
     public void move() {
         if (getY() >= Commons.HEIGHT) {
@@ -77,11 +77,13 @@ public class Ball extends Sprite implements Cloneable{
     public void setPath(String path){
         this.path = path;
     }
-
+    //red ball for the red ball powerup
     public void ChangeToRedBall() {
         path = "src/PNG/redball.png";
         loadImage();
     }
+    //normal ball after undoing the red ball powerup
+
     public void ChangeToNormalBall() {
         path = "src/PNG/58-Breakout-Tiles.png";
         loadImage();

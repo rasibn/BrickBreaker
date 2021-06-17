@@ -1,3 +1,5 @@
+A brickerbreaker game made for OOP class project.
+
 Group Member 1 tasks: MUHAMMAD RASIB NADEEM
 >Made the Player Class.
 >Made the Ball Class.

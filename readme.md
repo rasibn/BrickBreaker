@@ -1,6 +1,6 @@
 ### A brickerbreaker game 
 
-*Made using Object oriented Programming best practices and Design Patterns*
+*Made using Object Oriented Programming best practices and Design Patterns*
 
 ### Group Member 1 tasks: MUHAMMAD RASIB NADEEM
 - Made the Player Class.

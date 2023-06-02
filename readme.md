@@ -1,13 +1,13 @@
 ### BrickBreaker
 
-*A BreakBreaker game made using Object Oriented Programming best practices and Design Patterns*
+A BreakBreaker game made using Object Oriented Programming best practices and Design Patterns
 
 ## Preview
 
 
-![Image 1](https://github.com/Rasib0/BrickBreaker/blob/master/images/1.png)
-![Image 2](https://github.com/Rasib0/BrickBreaker/blob/master/images/2.png)
-![UML](https://github.com/Rasib0/BrickBreaker/blob/master/images/UML_Updated.jpg)
+![Image 1](https://github.com/Rasib0/BrickBreaker/blob/master/images/1.png?raw=true)
+![Image 2](https://github.com/Rasib0/BrickBreaker/blob/master/images/2.png?raw=true)
+![UML](https://github.com/Rasib0/BrickBreaker/blob/master/images/UML_Updated.jpg?raw=true)
 
 ## Work Distribution
 
@@ -39,4 +39,4 @@
 ### Group Member 5: Muhammad Hamza Wala Qadr
 
 - Implemented the Level Generator Class
-- Everyone contributed in rigorous test running of the project and coming up with various ideas to make the project user-friendly!
+> Everyone contributed in rigorous test running of the project and coming up with various ideas to make the project user-friendly!

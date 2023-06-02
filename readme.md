@@ -5,7 +5,9 @@
 ## Preview
 
 
-![plot](https://github.com/Rasib0/BrickBreaker/blob/master/UML.jpg)
+![Image 1](https://github.com/Rasib0/BrickBreaker/blob/master/images/1.png)
+![Image 2](https://github.com/Rasib0/BrickBreaker/blob/master/images/2.png)
+![UML](https://github.com/Rasib0/BrickBreaker/blob/master/UML.jpg)
 
 ## Work Distribution
 

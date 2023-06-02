@@ -4,10 +4,10 @@ A BreakBreaker game made using Object Oriented Programming best practices and De
 
 ## Preview
 
+<img src="https://github.com/Rasib0/BrickBreaker/blob/master/images/1.png?raw=true" alt="Image 1" width="60%" height="30%">
+<img src="https://github.com/Rasib0/BrickBreaker/blob/master/images/2.png?raw=true" alt="Image 2" width="60%" height="30%">
+<img src="https://github.com/Rasib0/BrickBreaker/blob/master/images/UML_Updated.png?raw=true" alt="UML Updated" width="60%" height="30%">
 
-![Image 1](https://github.com/Rasib0/BrickBreaker/blob/master/images/1.png?raw=true)
-![Image 2](https://github.com/Rasib0/BrickBreaker/blob/master/images/2.png?raw=true)
-![UML](https://github.com/Rasib0/BrickBreaker/blob/master/images/UML_Updated.jpg?raw=true)
 
 ## Work Distribution
 

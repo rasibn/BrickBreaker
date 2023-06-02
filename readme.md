@@ -2,7 +2,7 @@
 
 A BreakBreaker game in java, made following Object Oriented Programming best practices and Design Patterns
 
-## Quick start Command
+## Quickstart Command
 
 ```
 java -XX:+ShowCodeDetailsInExceptionMessages -cp $dir$/DrickBreaker/bin Main.Application

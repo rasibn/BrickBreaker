@@ -6,7 +6,7 @@
 
 
 ```
-![plot](https://github.com/Rasib0/BrickBreaker/blob/master/1.png)
+![plot](https://github.com/Rasib0/BrickBreaker/blob/master/UML.jpg)
 ```
 
 ## Work Distribution

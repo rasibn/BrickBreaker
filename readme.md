@@ -1,4 +1,4 @@
-### BrickBreaker
+# BrickBreaker
 
 A BreakBreaker game made using Object Oriented Programming best practices and Design Patterns
 

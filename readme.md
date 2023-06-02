@@ -1,28 +1,42 @@
-### A brickerbreaker game 
+### BrickBreaker
 
-*Made using Object Oriented Programming best practices and Design Patterns*
+*A BreakBreaker game made using Object Oriented Programming best practices and Design Patterns*
 
-### Group Member 1 tasks: MUHAMMAD RASIB NADEEM
-- Made the Player Class.
-- Made the Ball Class.
-- Made the Missile Class
-- Made  animaiton class
+## Preview
 
-### Group Member 2 tasks: MIR HAMZA ALI
-- Made an abrstract Brick class and it's subclasses.
-- Made Brick factory.
 
-### Group Member 3 tasks: MUHAMMAD AHSAN ALI KHAN
-- Made an abrstract Powerup class and it's subclasses for each defined powerup.
-- Made Powerup factory class.
-- Added functionality for balls to multiply
-- Added functionality for balls turn red
+```
+![plot](https://github.com/Rasib0/BrickBreaker/blob/master/1.png)
+```
 
-### Group Member 4 tasks: MINAL SARWAR
-- Made the instance Class
-- Made the Menu Class
+## Work Distribution
+
+### Group Member 1: Muhammad Rasib Nadeem
+
+- Implemented the Player Class.
+- Implemented the Ball Class.
+- Implemented the Missile Class
+- Implemented  Animaiton class
+
+### Group Member 2: Mir Hamza Ali
+
+- Implemented an abstract Brick class and it's subclasses.
+- Implemented Brick factory.
+
+### Group Member 3: Muhammad Ahsan Ali Khan
+
+- Implemented an abrstract Powerup class and it's subclasses for each defined powerup.
+- Implemented Powerup factory class.
+- Implemented functionality for balls to multiply
+- Implemented functionality for balls turn red
+
+### Group Member 4: Minal Sarvar
+
+- Implemented the instance Class
+- Implemented the Menu Class
 - Displayed the Score, Level number, lives left at top right.
 
-### Group Member 5 tasks: MUHAMMAD HAMZA WALA QADR
-- Made the Level Generator Class
+### Group Member 5: Muhammad Hamza Wala Qadr
+
+- Implemented the Level Generator Class
 - Everyone contributed in rigorous test running of the project and coming up with various ideas to make the project user-friendly!

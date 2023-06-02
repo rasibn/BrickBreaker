@@ -1,8 +1,15 @@
 # BrickBreaker
 
-A BreakBreaker game made using Object Oriented Programming best practices and Design Patterns
+A BreakBreaker game in java, made following Object Oriented Programming best practices and Design Patterns
+
+## Quick start Command
+
+```
+java -XX:+ShowCodeDetailsInExceptionMessages -cp $dir$/DrickBreaker/bin Main.Application
+```
 
 ## Preview
+
 <div style="display: flex;">
   <img src="https://github.com/Rasib0/BrickBreaker/blob/master/images/1.png?raw=true" alt="Image 1" style="width: 49%;">
   <img src="https://github.com/Rasib0/BrickBreaker/blob/master/images/2.png?raw=true" alt="Image 2" style="width: 49%;">
@@ -12,7 +19,7 @@ A BreakBreaker game made using Object Oriented Programming best practices and De
 
 
 
-## Work Distribution
+## Contributor 
 
 ### Group Member 1: Muhammad Rasib Nadeem
 
